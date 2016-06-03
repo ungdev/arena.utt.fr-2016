@@ -1,0 +1,72 @@
+:root {
+    /* Colors */
+    --mainColor: #24c6c0;
+    --light: #fff;
+    --grey: #727885;
+    --dark: #191e2a;
+    --blue: #36425c;
+    --accent: #ffe500;
+    --whiteShadowOpacity: .66;
+
+    /* Typography */
+    --fontFamily: Arial, sans-serif;
+    --fontSize: 14px;
+    --h1Size: 2.5rem;
+    --h2Size: 2rem;
+    --h3Size: 1.5rem;
+
+    /* Headers */
+    --headerSize: 60px;
+    --headerFontSize: 25px;
+
+    /* Hero */
+    --numberOfImages: 3;
+
+    /* Countdown */
+    --countdownFontSize: 8rem;
+}
+
+@custom-media --small (width < 748px);
+@custom-media --medium (width >= 748px) && (width < 992px);
+@custom-media --large (width >= 992px) && (width < 1200px);
+@custom-media --xlarge (width >= 1200px);
+
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+html, body, main {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+}
+
+h1 {
+    font-size: var(--h1Size);
+}
+
+h2 {
+    font-size: var(--h2Size);
+}
+
+h3 {
+    font-size: var(--h3Size);
+}
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}

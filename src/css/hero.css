@@ -1,0 +1,56 @@
+.a-hero {
+    background-color: var(--light);
+
+    > .a-hero__content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        width: 100%;
+        z-index: 2;
+
+        > .a-hero__content__logo {
+            color: var(--mainColor);
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 2px 2px 0 var(--accent),
+                         4px 4px 0 var(--dark);
+            text-transform: uppercase;
+        }
+    }
+
+    > .a-hero__images {
+        opacity: var(--whiteShadowOpacity);
+        height: 100%;
+        width: 100%;
+
+        > .a-hero__image {
+            background-position: center;
+            background-size: cover;
+            float: left;
+            height: 100%;
+            width: calc(100% / var(--numberOfImages));
+
+            &.a-hero__image--lol {
+                background-image: url("../img/lol.png");
+            }
+
+            &.a-hero__image--starcraft {
+                background-image: url("../img/starcraft.png");
+            }
+
+            &.a-hero__image--csgo {
+                background-image: url("../img/csgo.png");
+            }
+
+            &.a-hero__image--hearthstone {
+                background-image: url("../img/hearthstone.png");
+            }
+
+            &.a-hero__image--overwatch {
+                background-image: url("../img/overwatch.png");
+            }
+
+        }
+    }
+}

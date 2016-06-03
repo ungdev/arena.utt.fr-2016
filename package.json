@@ -1,0 +1,34 @@
+{
+  "name": "arena.utt.fr-2016",
+  "version": "0.0.0",
+  "description": "Site externe UA 2016",
+  "scripts": {
+    "start": "webpack-dev-server --port 8082",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "babel-core": "^6.7.7",
+    "babel-loader": "^6.2.4",
+    "colors": "^1.1.0",
+    "copy-webpack-plugin": "^3.0.1",
+    "css-loader": "^0.23.1",
+    "csswring": "^4.2.2",
+    "doiuse": "^2.3.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "postcss-cssnext": "^2.5.2",
+    "postcss-import": "^8.1.2",
+    "postcss-loader": "^0.8.2",
+    "postcss-nested": "^1.0.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.8.11",
+    "webpack-dev-server": "^1.8.2"
+  },
+  "dependencies": {
+    "normalize.css": "^4.1.1"
+  }
+}

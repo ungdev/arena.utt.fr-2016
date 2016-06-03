@@ -1,0 +1,14 @@
+.a-page {
+    overflow-y: auto;
+    text-align: center;
+    width: 100%;
+
+    &.a-page--dark {
+        background-color: var(--dark);
+        color: var(--light);
+    }
+
+    &.a-page--full-height {
+        height: 100%;
+    }
+}

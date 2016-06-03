@@ -1,0 +1,95 @@
+.a-page--intro {
+    padding: 0 5rem;
+
+    .a-page__title {
+        color: var(--accent);
+        font-weight: bold;
+        text-transform: uppercase;
+
+        &.a-page__title--big {
+            font-size: 4rem;
+            margin-bottom: 0;
+        }
+
+        &.a-page__title--medium {
+            color: var(--grey);
+            font-size: 2rem;
+            margin: 1rem;
+        }
+    }
+
+    .a-page__text {
+        font-size: 1.4rem;
+        margin: 0;
+        text-align: justify;
+        text-align-last: center;
+    }
+
+    .a-page__separator {
+        border: none;
+        border-top: 2px solid var(--accent);
+        margin: 2rem 0;
+    }
+
+    .a-countdown {
+        .a-countdown__months, .a-countdown__days, .a-countdown__hours {
+            border: 1px solid var(--accent);
+            float: left;
+            font-size: var(--countdownFontSize);
+            line-height: calc(var(--countdownFontSize) * 1.5);
+            width: 10%;
+
+            &.a-countdown__months--one, &.a-countdown__days--one, &.a-countdown__hours--one {
+                margin-right: 1%;
+            }
+        }
+
+        .a-countdown__spacing {
+            float: left;
+
+            &:first-child, &:last-child {
+                width: 9%;
+            }
+
+            &:nth-child(4), &:nth-child(7) {
+                width: 9.5%;
+            }
+        }
+    }
+
+    .a-countdown-indicators {
+        margin-top: 1rem;
+
+        .a-countdown-indicators__months, .a-countdown-indicators__days, .a-countdown-indicators__hours {
+            color: var(--accent);
+            float: left;
+            font-size: 2rem;
+            text-transform: uppercase;
+            width: 21%;
+        }
+
+        .a-countdown-indicators__spacing {
+            float: left;
+            width: 9%;
+
+            &:not(:first-child):not(:last-child) {
+                width: 9.5%;
+            }
+        }
+    }
+
+    .a-page__register {
+        font-size: 4rem;
+        font-weight: bold;
+        background-color: transparent;
+        border: 1px solid var(--accent);
+        text-shadow: 2px 2px 0 var(--accent);
+        border-left-width: 3px;
+        border-right-width: 3px;
+        color: var(--mainColor);
+        margin: 3rem;
+        padding: 1rem;
+        width: 50%;
+    }
+
+}
