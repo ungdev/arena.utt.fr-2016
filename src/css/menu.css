@@ -81,7 +81,7 @@
     height: 100%;
     left: 0;
     padding: 150px 2rem;
-    position: absolute;
+    position: fixed;
     top: -100%;
     width: 100%;
     z-index: 3;
