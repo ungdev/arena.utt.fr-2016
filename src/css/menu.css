@@ -9,7 +9,7 @@
     position: absolute;
     text-transform: uppercase;
     top: var(--headerSize);
-    transition: width .3s ease, left .3s ease, box-shadow .3s ease;
+    transition: width .3s ease, left .3s ease, box-shadow .3s ease, background-color .3s ease;
     width: 92.5%;
     z-index: 4;
 
