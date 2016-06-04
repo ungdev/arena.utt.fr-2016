@@ -20,3 +20,4 @@ require('../fonts/big_noodle_titling_oblique.woff');
 require('../fonts/big_noodle_titling_oblique.woff2');
 
 require('./sticky.js');
+require('./scroll.js');

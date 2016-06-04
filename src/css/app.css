@@ -92,6 +92,11 @@ p {
     text-align-last: center;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .cf:before,
 .cf:after {
     content: " ";

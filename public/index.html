@@ -5,13 +5,17 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <nav class="a-menu">
+        <nav class="a-menu" data-scroll-header>
             <div class="a-menu__item a-menu__item--brand">
                 <img class="a-menu__brandicon" src="/img/logo.small.png" height="86" width="100"/>
                 <span class="a-font-bignoodle a-font-bignoodle--oblique a-menu__brandname">UA 2016</span>
             </div>
-            <div class="a-font-bignoodle a-menu__item a-menu__item--link">Evenement</div>
-            <div class="a-font-bignoodle a-menu__item a-menu__item--link">Infos Pratiques</div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--link">
+                <a data-scroll href="#a-anchor--event">Evenement</a>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--link">
+                <a data-scroll href="#a-anchor--infos">Infos Pratiques</a>
+            </div>
             <div class="a-font-bignoodle a-menu__item a-menu__item--link">Partenaires</div>
             <div class="a-font-bignoodle a-menu__item a-menu__item--link">Festival</div>
             <div class="a-font-bignoodle a-menu__item a-menu__item--link">Communauté</div>
@@ -32,7 +36,7 @@
                 </div>
             </div>
             <div class="a-page a-page--intro a-page--blue">
-                <h2 class="a-page__title a-page__title--big">Rassemble ton matériel</h2>
+                <h2 id="a-anchor--event" class="a-page__title a-page__title--big">Rassemble ton matériel</h2>
                 <h3 class="a-page__title a-page__title--medium">Venez retrouver l'ambiance d'une lan party authentique avec votre équipe.</h3>
                 <p class="a-page__text">
                     L'UTT Arena revient pour sa 15e édition les 9, 10 et 11 Décembre 2016. Cette édition aura lieu comme l'année dernière dans le cadre du Festival des Jeux au Cube de Troyes. Au programme 3 tournois sur des incontournables de l'E-sports, du skill, des personnalités et des rencontres, de nombreuses animations et lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. Alors récupère ta souris, ton casque et ton câble réseau, branche ton écran et vient imposer la domination de ton équipe dans le Cube.
@@ -73,7 +77,7 @@
                         <img src="/img/computer.png" alt="Ordinateur">
                     </div>
                     <div class="a-category__text">
-                        <h2 class="a-font-bignoodle--oblique a-category__header">Prépare ton UA</h2>
+                        <h2 id="a-anchor--infos" class="a-font-bignoodle--oblique a-category__header">Prépare ton UA</h2>
                         <p class="a-category__text">
                             Si vous participez à l'UA, il y a un minimum de matériel dont vous aurez besoin.
                             Même les plus aguerris d'entre vous devraient jeter un œil à la liste, un oubli est vite arrivé !
