@@ -5,6 +5,7 @@ require('../img/logo.png');
 require('../img/logo.small.png');
 require('../img/computer.png');
 require('../img/agenda.png');
+require('../img/hero.footer.png');
 
 require('../fonts/big_noodle_titling.eot');
 require('../fonts/big_noodle_titling.svg');
