@@ -119,3 +119,63 @@
         }
     }
 }
+
+@media (max-width: 1050px) {
+    .a-page--intro {
+        padding: 0 3rem;
+    }
+
+    .a-page--intro .a-page__title.a-page__title--big {
+        font-size: 8rem;
+    }
+
+    .a-page--intro .a-page__title.a-page__title--medium {
+        font-size: 3rem;
+    }
+
+    .a-page--intro .a-page__text {
+        font-size: 1.3rem;
+    }
+
+    .a-page--intro .a-countdown .a-countdown__spacing:first-child,
+    .a-page--intro .a-countdown .a-countdown__spacing:last-child {
+        width: 0;
+    }
+
+    .a-page--intro .a-countdown .a-countdown__months,
+    .a-page--intro .a-countdown .a-countdown__days,
+    .a-page--intro .a-countdown .a-countdown__hours {
+        font-size: 6rem;
+        width: 13%;
+    }
+
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__spacing:first-child,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__spacing:last-child {
+        width: 0;
+    }
+
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__months,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__days,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__hours {
+        width: 27%;
+    }
+
+    .a-page--intro .a-page__register {
+        width: 100%;
+        margin: 3rem 0;
+    }
+
+    .a-page--intro .a-category {
+        margin-bottom: 5rem;
+    }
+
+    .a-page--intro .a-category > .a-category__icon,
+    .a-page--intro .a-category > .a-category__icon > img {
+        width: 200px;
+    }
+
+    .a-page--intro .a-category > .a-category__text {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+}
