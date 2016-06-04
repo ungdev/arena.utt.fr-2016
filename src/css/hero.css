@@ -53,3 +53,25 @@
         width: 100%;
     }
 }
+
+@media (max-width: 850px) {
+    .a-hero > .a-hero__content > img {
+        width: 400px;
+        height: 350px;
+    }
+
+    .a-hero > .a-hero__content > .a-hero__content__logo {
+        font-size: 9rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .a-hero > .a-hero__content > img {
+        width: 320px;
+        height: 280px;
+    }
+
+    .a-hero > .a-hero__content > .a-hero__content__logo {
+        font-size: 7rem;
+    }
+}
