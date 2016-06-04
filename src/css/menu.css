@@ -107,7 +107,7 @@
 
         &.a-menu__item--right {
             background-color: var(--accent);
-            color: var(--white);
+            color: var(--dark);
         }
     }
 }
