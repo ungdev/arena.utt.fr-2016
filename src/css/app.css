@@ -4,7 +4,7 @@
     --light: #fff;
     --grey: #727885;
     --dark: #191e2a;
-    --blue: #36425c;
+    --blue: #35415B;
     --accent: #ffe500;
     --whiteShadowOpacity: .85;
 
@@ -26,6 +26,12 @@
 
     /* Countdown */
     --countdownFontSize: 8rem;
+
+    /* Categories */
+    --categoryIconSize: 350px;
+
+    /* Footer */
+    --footerIconSize: 100px;
 }
 
 @custom-media --small (width < 748px);
@@ -38,6 +44,7 @@
 }
 
 html, body, main {
+    background-color: var(--blue);
     height: 100%;
     width: 100%;
 }
@@ -66,6 +73,23 @@ h2 {
 
 h3 {
     font-size: var(--h3Size);
+}
+
+button {
+    background-color: transparent;
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border: 1px solid var(--accent);
+    color: var(--mainColor);
+    font-family: var(--fontFamilyTitleOblique);
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 var(--accent);
+}
+
+p {
+    text-align: justify;
+    text-align-last: center;
 }
 
 .cf:before,

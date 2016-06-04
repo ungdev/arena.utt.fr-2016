@@ -22,8 +22,6 @@
     .a-page__text {
         font-size: 1.5rem;
         margin: 0;
-        text-align: justify;
-        text-align-last: center;
     }
 
     .a-page__separator {
@@ -80,19 +78,44 @@
     }
 
     .a-page__register {
-        font-family: var(--fontFamilyTitleOblique);
         font-size: 8rem;
-        font-weight: bold;
-        letter-spacing: 1px;
-        background-color: transparent;
-        border: 1px solid var(--accent);
-        text-shadow: 2px 2px 0 var(--accent);
-        border-left-width: 3px;
-        border-right-width: 3px;
-        color: var(--mainColor);
         margin: 3rem;
         padding: 1rem;
         width: 50%;
     }
 
+    .a-category {
+        height: var(--categoryIconSize);
+        margin-bottom: 10rem;
+
+        > .a-category__icon {
+            float: left;
+            width: var(--categoryIconSize);
+
+            > img {
+                width: calc(var(--categoryIconSize) - 50px);
+            }
+        }
+
+        > .a-category__text {
+            margin-left: var(--categoryIconSize);
+            width: calc(100% - var(--categoryIconSize));
+
+            > .a-category__header {
+                color: var(--accent);
+                font-size: 7rem;
+                margin-bottom: 0;
+            }
+
+            > .a-category__text {
+                font-size: 1.4rem;
+                padding: 0 3rem;
+            }
+
+            > .a-category__button {
+                font-size: 6rem;
+                padding: 0.5rem 6rem;
+            }
+        }
+    }
 }
