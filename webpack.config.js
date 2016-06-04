@@ -14,7 +14,7 @@ module.exports = {
         './src/js/app.js'
     ],
     output: {
-        path: path.join(__dirname, 'build'),
+        path: path.join(__dirname, 'public'),
         publicPath: '/',
         filename: 'bundle.js'
     },
@@ -27,17 +27,21 @@ module.exports = {
             },
             {
                 test: /\.png$/,
-                loader: 'url-loader'
+                loader: 'file?name=img/[name].[ext]'
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel'
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'file?name=fonts/[name].[ext]'
             }
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, 'build')
+        contentBase: path.join(__dirname, 'public')
     },
     plugins: [
         new ExtractTextPlugin('styles.css')
