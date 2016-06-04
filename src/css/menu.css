@@ -1,5 +1,6 @@
 .a-menu {
     background-color: var(--blue);
+    box-shadow: 0 0 0 var(--grey);
     color: var(--light);
     font-size: var(--headerFontSize);
     height: var(--headerSize);
@@ -8,11 +9,12 @@
     position: absolute;
     text-transform: uppercase;
     top: var(--headerSize);
-    transition: width .3s ease, left .3s ease;
+    transition: width .3s ease, left .3s ease, box-shadow .3s ease;
     width: 92.5%;
     z-index: 3;
 
     &.a-menu--fixed-top {
+        box-shadow: 0 2px 0 var(--grey);
         left: 0;
         position: fixed;
         top: 0;
