@@ -1,7 +1,7 @@
 .a-page {
     margin: 0 auto;
     max-width: 1400px;
-    overflow-y: auto;
+    overflow-y: visible;
     text-align: center;
     width: 100%;
 

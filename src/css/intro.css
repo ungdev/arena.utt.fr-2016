@@ -104,7 +104,7 @@
             > .a-category__header {
                 color: var(--accent);
                 font-size: 7rem;
-                margin-bottom: 0;
+                margin: 0;
             }
 
             > .a-category__text {
@@ -216,20 +216,79 @@
         width: 15.5%;
     }
 
-    .a-page--intro .a-countdown .a-countdown__spacing:not(:first-child):not(:last-child) {
+    .a-page--intro .a-countdown .a-countdown__spacing:not(:first-child):not(:last-child),
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__spacing:not(:first-child):not(:last-child) {
         width: 2%;
+    }
+
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__months,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__days,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__hours {
+        width: 32%;
     }
 }
 
 @media (max-width: 650px) {
-    .a-page--intro .a-countdown .a-countdown__months, .a-page--intro .a-countdown .a-countdown__days, .a-page--intro .a-countdown .a-countdown__hours {
+    .a-page--intro .a-countdown .a-countdown__months,
+    .a-page--intro .a-countdown .a-countdown__days,
+    .a-page--intro .a-countdown .a-countdown__hours {
         font-size: 3rem;
         line-height: 8rem;
+    }
+
+    .a-page--intro .a-page__title.a-page__title--big {
+        font-size: 6rem;
+    }
+
+    .a-page--intro .a-page__title.a-page__title--medium {
+        font-size: 2.5rem;
+    }
+
+    .a-page--intro .a-page__register {
+        font-size: 6rem;
+    }
+
+    .a-page--intro .a-category > .a-category__text > .a-category__header {
+        font-size: 3.5rem;
+    }
+
+    .a-page--intro .a-category {
+        height: auto;
     }
 }
 
 @media (max-width: 600px) {
     .a-page--intro .a-category > .a-category__text > .a-category__text {
         padding: 0;
+    }
+
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__months,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__days,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__hours {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .a-page--intro .a-page__title.a-page__title--big ,
+    .a-page--intro .a-page__register {
+        font-size: 4rem;
+    }
+
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__months,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__days,
+    .a-page--intro .a-countdown-indicators .a-countdown-indicators__hours {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .a-page--intro {
+        padding: 0 1rem;
+    }
+
+    .a-page--intro .a-category > .a-category__icon,
+    .a-page--intro .a-category > .a-category__icon > img {
+        width: 45px;
     }
 }

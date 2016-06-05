@@ -43,3 +43,27 @@
         font-size: 1.4rem;
     }
 }
+
+@media (max-width: 650px) {
+    .a-footer > .a-footer__title {
+        font-size: 3rem;
+    }
+
+    .a-footer > .a-footer__icons > .a-footer__icons__icon {
+        height: 75px;
+    }
+
+    .a-footer > .a-footer__icons > .a-footer__icons__icon > svg {
+        height: 75px;
+        width: 75px;
+    }
+
+    .a-footer > .a-footer__icons > .a-footer__icons__icon:not(:last-child):after {
+        top: 15px;
+    }
+
+    .a-footer > .a-footer__text {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+}
