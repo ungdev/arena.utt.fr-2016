@@ -208,6 +208,24 @@
         padding: 0.5rem 0;
         width: 100%;
     }
+
+    .a-page--intro .a-countdown .a-countdown__months,
+    .a-page--intro .a-countdown .a-countdown__days,
+    .a-page--intro .a-countdown .a-countdown__hours {
+        font-size: 4rem;
+        width: 15.5%;
+    }
+
+    .a-page--intro .a-countdown .a-countdown__spacing:not(:first-child):not(:last-child) {
+        width: 2%;
+    }
+}
+
+@media (max-width: 650px) {
+    .a-page--intro .a-countdown .a-countdown__months, .a-page--intro .a-countdown .a-countdown__days, .a-page--intro .a-countdown .a-countdown__hours {
+        font-size: 3rem;
+        line-height: 8rem;
+    }
 }
 
 @media (max-width: 600px) {

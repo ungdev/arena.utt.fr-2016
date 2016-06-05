@@ -134,3 +134,23 @@
         display: block;
     }
 }
+
+@media (max-width: 400px) {
+    .a-menu > .a-menu__item.a-menu__item--brand {
+        width: 100%;
+    }
+
+    .a-menu > .a-menu__item.a-menu__item--brand > .a-menu__brandicon {
+        height: 60px;
+        margin-top: 0;
+        width: 70px;
+    }
+
+    .a-menu > .a-menu__item.a-menu__item--brand > .a-menu__brandname {
+        margin-left: 80px;
+    }
+
+    .a-menu > .a-menu__item.a-menu__item--right {
+        font-size: 1.2rem;
+    }
+}

@@ -75,3 +75,14 @@
         font-size: 7rem;
     }
 }
+
+@media (max-width: 420px) {
+    .a-hero > .a-hero__content > img {
+        height: 245px;
+        width: 280px;
+    }
+
+    .a-hero > .a-hero__content > .a-hero__content__logo {
+        font-size: 5rem;
+    }
+}
