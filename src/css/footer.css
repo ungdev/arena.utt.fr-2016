@@ -15,6 +15,29 @@
             height: var(--footerIconSize);
             position: relative;
 
+            &:hover {
+                cursor: pointer;
+
+                > .a-footer__icon--twitter {
+                    fill: var(--twitter);
+                    stroke: var(--twitter);
+                }
+
+                > .a-footer__icon--facebook {
+                    fill: var(--facebook);
+                    stroke: var(--facebook);
+                }
+
+                > .a-footer__icon--youtube {
+                    fill: var(--youtube);
+                    stroke: var(--youtube);
+
+                    path:first-child {
+                        fill: var(--light);
+                    }
+                }
+            }
+
             &:not(:last-child){
                 margin-right: 2rem;
 
@@ -33,7 +56,13 @@
                 height: var(--footerIconSize);
                 fill: var(--grey);
                 stroke: var(--grey);
+                transition: fill .3s ease, stroke .3s ease;
                 width: var(--footerIconSize);
+
+                &.a-footer__icon--youtube path:first-child {
+                    fill: var(--grey);
+                    transition: fill .3s ease;
+                }
             }
         }
     }
