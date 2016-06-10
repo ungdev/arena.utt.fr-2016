@@ -1,6 +1,6 @@
 .a-menu {
     background-color: var(--blue);
-    box-shadow: 0 0 0 var(--grey);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, .75);
     color: var(--light);
     font-size: var(--headerFontSize);
     height: var(--headerSize);
@@ -14,7 +14,7 @@
     z-index: 4;
 
     &.a-menu--fixed-top {
-        box-shadow: 0 2px 0 var(--grey);
+        box-shadow: 0 5px 0 rgba(0, 0, 0, .75);
         left: 0;
         position: fixed;
         top: 0;
