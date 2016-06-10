@@ -29,3 +29,4 @@ require('../fonts/muli-regular.woff2');
 require('./sticky.js');
 require('./scroll.js');
 require('./menu.js');
+require('./countdown.js');
