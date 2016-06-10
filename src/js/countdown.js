@@ -9,8 +9,6 @@ const months = pad2(diff.months).split('');
 const days   = pad2(diff.days).split('');
 const hours  = pad2(diff.hours).split('');
 
-console.log(diff);
-
 const $countdownMonthsOne = document.querySelector('.a-countdown__months--one');
 const $countdownMonthsTwo = document.querySelector('.a-countdown__months--two');
 const $countdownDaysOne = document.querySelector('.a-countdown__days--one');
