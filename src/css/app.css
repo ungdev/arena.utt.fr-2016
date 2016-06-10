@@ -9,7 +9,7 @@
     --whiteShadowOpacity: .85;
 
     /* Typography */
-    --fontFamily: Arial, sans-serif;
+    --fontFamily: 'muliregular', Arial, sans-serif;
     --fontFamilyTitle: 'bignoodletitlingregular', sans-serif;
     --fontFamilyTitleOblique: 'bignoodletitlingoblique', sans-serif;
     --fontSize: 14px;

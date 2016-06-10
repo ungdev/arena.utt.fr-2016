@@ -20,6 +20,12 @@ require('../fonts/big_noodle_titling_oblique.ttf');
 require('../fonts/big_noodle_titling_oblique.woff');
 require('../fonts/big_noodle_titling_oblique.woff2');
 
+require('../fonts/muli-regular.eot');
+require('../fonts/muli-regular.svg');
+require('../fonts/muli-regular.ttf');
+require('../fonts/muli-regular.woff');
+require('../fonts/muli-regular.woff2');
+
 require('./sticky.js');
 require('./scroll.js');
 require('./menu.js');
