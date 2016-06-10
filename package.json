@@ -4,7 +4,7 @@
   "description": "Site externe UA 2016",
   "scripts": {
     "start": "webpack-dev-server --port 8082",
-    "build": "webpack",
+    "build": "rm -r public/bundle.js public/styles.css public/fonts public/img && webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",

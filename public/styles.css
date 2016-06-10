@@ -571,16 +571,16 @@ a {
   width: 33.33333%;
 }
 
-.a-hero > .a-hero__images > .a-hero__image.a-hero__image--lol {
-  background-image: url(/img/lol.png);
-}
-
-.a-hero > .a-hero__images > .a-hero__image.a-hero__image--csgo {
-  background-image: url(/img/csgo.png);
-}
-
 .a-hero > .a-hero__images > .a-hero__image.a-hero__image--overwatch {
   background-image: url(/img/overwatch.png);
+}
+
+.a-hero > .a-hero__images > .a-hero__image.a-hero__image--warcraft {
+  background-image: url(/img/warcraft.png);
+}
+
+.a-hero > .a-hero__images > .a-hero__image.a-hero__image--lol {
+  background-image: url(/img/lol.png);
 }
 
 .a-hero > img {
