@@ -31,49 +31,26 @@
     }
 
     .a-countdown {
+        display: flex;
+        justify-content: space-around;
+
         .a-countdown__months, .a-countdown__days, .a-countdown__hours {
-            border: 1px solid var(--accent);
-            float: left;
             font-size: var(--countdownFontSize);
             line-height: calc(var(--countdownFontSize) * 1.5);
-            width: 10%;
-
-            &.a-countdown__months--one, &.a-countdown__days--one, &.a-countdown__hours--one {
-                margin-right: 1%;
-            }
-        }
-
-        .a-countdown__spacing {
-            float: left;
-
-            &:first-child, &:last-child {
-                width: 9%;
-            }
-
-            &:nth-child(4), &:nth-child(7) {
-                width: 9.5%;
-            }
+            width: calc(var(--countdownFontSize) * 1.5);
         }
     }
 
     .a-countdown-indicators {
+        display: flex;
+        justify-content: space-around;
         margin-top: 1rem;
 
         .a-countdown-indicators__months, .a-countdown-indicators__days, .a-countdown-indicators__hours {
             color: var(--accent);
-            float: left;
             font-size: 2rem;
             text-transform: uppercase;
-            width: 21%;
-        }
-
-        .a-countdown-indicators__spacing {
-            float: left;
-            width: 9%;
-
-            &:not(:first-child):not(:last-child) {
-                width: 9.5%;
-            }
+            width: calc(var(--countdownFontSize) * 1.5);
         }
     }
 

@@ -78,14 +78,15 @@
 
 .a-mobile-menu {
     background-color: var(--blue);
-    height: 100%;
     left: 0;
-    padding: 150px 2rem;
+    max-height: 100%;
+    overflow: overlay;
+    padding: 150px 2rem 2rem 2rem;
     position: fixed;
     top: -100%;
+    transition: top .3s ease;
     width: 100%;
     z-index: 3;
-    transition: top .3s ease;
 
     &.a-mobile-menu--visible {
         top: 0;
