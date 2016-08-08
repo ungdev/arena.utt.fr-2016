@@ -118,7 +118,7 @@
     }
 }
 
-@media (max-width: 1385px) {
+@media (max-width: 1080px) {
     .a-menu > .a-menu__item.a-menu__item--link {
         font-size: 1.6rem;
         padding: 0 10px;
@@ -130,7 +130,7 @@
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 780px) {
     .a-menu > .a-menu__item.a-menu__item--link,
     .a-menu > .a-menu__item.a-menu__item--right {
         display: none;

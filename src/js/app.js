@@ -7,6 +7,11 @@ require('../img/computer.png');
 require('../img/agenda.png');
 require('../img/hero.footer.png');
 
+require('../img/bde.jpg');
+require('../img/c3.png');
+require('../img/troyesExpoCube.png');
+require('../img/utt.png');
+
 require('../fonts/big_noodle_titling.eot');
 require('../fonts/big_noodle_titling.svg');
 require('../fonts/big_noodle_titling.ttf');
