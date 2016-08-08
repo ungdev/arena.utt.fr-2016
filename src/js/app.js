@@ -12,6 +12,10 @@ require('../img/c3.png');
 require('../img/troyesExpoCube.png');
 require('../img/utt.png');
 
+require('../img/ua1.jpg');
+require('../img/ua2.jpg');
+require('../img/ua3.jpg');
+
 require('../fonts/big_noodle_titling.eot');
 require('../fonts/big_noodle_titling.svg');
 require('../fonts/big_noodle_titling.ttf');
