@@ -1,0 +1,49 @@
+.a-modal {
+    background-color: #42506f;
+    display: none;
+    height: 100%;
+    left: 0;
+    padding: 7rem 5rem 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+
+    &.a-modal--opened {
+        display: block;
+    }
+}
+
+.a-menu__item--close {
+    cursor: pointer;
+    display: none;
+    height: 60px;
+
+    a {
+        font-size: 2rem;
+        left: 2px;
+        position: relative;
+        text-transform: uppercase;
+        top: 1px;
+    }
+}
+
+body.a-modal-opened {
+    overflow: hidden;
+
+    .a-menu {
+        /* Hide menu */
+        .a-menu__item--link {
+            display: none;
+        }
+
+        /* Hide hamburger menu*/
+        > .a-menu__item--right {
+            display: none;
+        }
+
+        .a-menu__item--close {
+            display: block;
+        }
+    }
+}

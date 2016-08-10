@@ -7,6 +7,7 @@
 @import 'faq';
 @import 'intro';
 @import 'footer';
+@import 'modal';
 
 @import '../fonts/big_noodle_titling.css';
 @import '../fonts/muli-regular.css';

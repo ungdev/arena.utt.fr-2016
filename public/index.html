@@ -46,11 +46,18 @@
             <div class="a-font-bignoodle a-menu__item a-menu__item--link a-menu__item--no-border">
                 <a data-scroll href="#a-anchor--contacts">Contacts</a>
             </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--right a-menu__item--close">
+                <a href="#">&#x2715;</a>
+            </div>
             <div class="a-font-bignoodle a-menu__item a-menu__item--right">S'inscrire</div>
             <div class="a-font-bignoodle a-menu__item a-menu__item--right a-menu__item--right-mobile">Menu &#9776;</div>
         </nav>
 
         <main>
+            <div class="a-modal" id="modal-infos">
+                <h1>Foo.</h1>
+            </div>
+
             <div class="a-page a-page--full-height a-page--full-width a-hero">
                 <div class="a-hero__images">
                     <div class="a-hero__image a-hero__image--overwatch"></div>
@@ -93,7 +100,7 @@
                             Si vous participez à l'UA, il y a un minimum de matériel dont vous aurez besoin.
                             Même les plus aguerris d'entre vous devraient jeter un œil à la liste, un oubli est vite arrivé !
                         </p>
-                        <button class="a-category__button">Plus d'infos</button>
+                        <button class="a-category__button" data-modal="#modal-infos">Plus d'infos</button>
                     </div>
                 </div>
                 <div class="a-category cf">
@@ -147,7 +154,7 @@
                 </div>
             </div>
 
-            <footer class="a-footer">
+            <footer class="a-footer" id="a-anchor--contacts">
                 <h2 class="a-footer__title">Suivez nous</h2>
                 <div class="a-footer__icons">
                     <a href="#" class="a-footer__icons__icon">
