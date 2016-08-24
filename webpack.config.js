@@ -26,7 +26,7 @@ module.exports = {
                 loader: ExtractTextPlugin.extract('css!postcss'),
             },
             {
-                test: /\.(png|jpg)$/,
+                test: /\.(png|jpg|xml|json|svg|ico)$/,
                 loader: 'file?name=img/[name].[ext]'
             },
             {
