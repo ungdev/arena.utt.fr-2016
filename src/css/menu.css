@@ -82,7 +82,7 @@
     max-height: 100%;
     overflow: overlay;
     padding: 150px 2rem 2rem 2rem;
-    position: fixed;
+    position: absolute;
     top: -100%;
     transition: top .3s ease;
     width: 100%;

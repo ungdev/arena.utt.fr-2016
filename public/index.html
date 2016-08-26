@@ -33,8 +33,8 @@
             <div class="a-font-bignoodle a-menu__item a-menu__item--link a-menu__item--no-border">
                 <a data-scroll href="#a-anchor--contacts">Contacts</a>
             </div>
-            <div class="a-font-bignoodle a-menu__item a-menu__item--right">
-                <a href="#">S'inscrire</a>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
+                <a href="#">Connexion</a>
             </div>
         </nav>
 
@@ -58,16 +58,42 @@
             <div class="a-font-bignoodle a-menu__item a-menu__item--link a-menu__item--no-border">
                 <a data-scroll href="#a-anchor--contacts">Contacts</a>
             </div>
-            <div class="a-font-bignoodle a-menu__item a-menu__item--right a-menu__item--close">
-                <a href="#">&#x2715;</a>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
+                <a href="#">Connexion</a>
             </div>
-            <div class="a-font-bignoodle a-menu__item a-menu__item--right">S'inscrire</div>
             <div class="a-font-bignoodle a-menu__item a-menu__item--right a-menu__item--right-mobile">Menu &#9776;</div>
         </nav>
 
         <main>
-            <div class="a-modal" id="modal-infos">
-                <h1>Foo.</h1>
+            <div class="a-modal" id="modal-login">
+                <h1 class="a-modal__register-title">Inscription</h1>
+                <a class="a-modal__closer">&#x2715;</a>
+                <form method="post" action="/post">
+                    <div class="a-modal__input">
+                        <input type="text" placeholder="Pseudo" />
+                    </div>
+                    <div class="a-modal__input">
+                        <input type="password" placeholder="Mot de passe" />
+                    </div>
+                    <div class="a-modal__input">
+                        <input type="password" placeholder="Confirmation" />
+                    </div>
+                    <div class="a-modal__input">
+                        <input type="email" placeholder="Mail" />
+                    </div>
+                    <div class="a-modal__input">
+                        <input type="checkbox" name="rules" id="rules">
+                        <label for="rules">J'accepte les règles du tournoi</label>
+                    </div>
+                    <div class="a-modal__input">
+                        <input type="checkbox" name="conditions" id="conditions">
+                        <label for="conditions">J'accepte les conditions générales</label>
+                    </div>
+                    <div class="a-modal__submit">
+                        <input type="submit" class="a-font-bignoodle" value="Inscription" />
+                        <a href="#">Connexion</a>
+                    </div>
+                </form>
             </div>
 
             <div class="a-page a-page--full-height a-page--full-width a-hero">
@@ -100,7 +126,7 @@
                     <div class="a-countdown-indicators__indicator a-countdown-indicators__indicator--hours">Heures</div>
                 </div>
                 <h2 class="a-page__title a-page__title--big">9, 10 et 11 Décembre 2016</h2>
-                <button class="a-page__register">S'inscrire</button>
+                <button class="a-page__register" data-modal="#modal-login">Connexion</button>
                 <hr class="a-page__separator" />
                 <div class="a-category cf">
                     <div class="a-category__icon">
@@ -112,7 +138,7 @@
                             Si vous participez à l'UA, il y a un minimum de matériel dont vous aurez besoin.
                             Même les plus aguerris d'entre vous devraient jeter un œil à la liste, un oubli est vite arrivé !
                         </p>
-                        <button class="a-category__button" data-modal="#modal-infos">Plus d'infos</button>
+                        <button class="a-category__button">Plus d'infos</button>
                     </div>
                 </div>
                 <div class="a-category cf">

@@ -1,6 +1,7 @@
 const smoothScroll = require('smooth-scroll/dist/js/smooth-scroll');
 
-const $nav = document.querySelector('.a-mobile-menu');
+const $nav       = document.querySelector('.a-mobile-menu');
+const $scrollers = Array.from(document.querySelectorAll('[data-scroll]'));
 
 smoothScroll.init({
     selector: '[data-scroll]',
@@ -11,7 +12,7 @@ smoothScroll.init({
     updateURL: false
 });
 
-[].slice.call(document.querySelectorAll('[data-scroll]')).forEach(function ($item) {
+$scrollers.forEach(function ($item) {
     $item.addEventListener('click', function () {
         $nav.classList.remove('a-mobile-menu--visible');
     }, false);
