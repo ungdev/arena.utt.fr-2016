@@ -36,8 +36,8 @@
 
         > div {
             font-size: var(--countdownFontSize);
-            line-height: calc(var(--countdownFontSize) * 1.5);
-            width: calc(var(--countdownFontSize) * 1.5);
+            line-height: calc(var(--countdownFontSize) * 0.8);
+            width: calc(var(--countdownFontSize) * 0.8);
         }
     }
 
@@ -48,9 +48,9 @@
 
         .a-countdown-indicators__indicator {
             color: var(--accent);
-            font-size: 2rem;
+            font-size: 4rem;
             text-transform: uppercase;
-            width: calc(var(--countdownFontSize) * 1.5);
+            width: calc(var(--countdownFontSize) * 0.8);
         }
     }
 
@@ -175,10 +175,6 @@
         width: 0;
     }
 
-    .a-page--intro .a-countdown > div {
-        font-size: 6rem;
-    }
-
     .a-page--intro .a-page__register {
         width: 100%;
         margin: 3rem 0;
@@ -238,19 +234,19 @@
     }
 
     .a-page--intro .a-countdown > div {
-        font-size: 4rem;
+        font-size: 8rem;
         line-height: 6rem;
     }
 
     .a-page--intro .a-countdown-indicators .a-countdown-indicators__indicator {
-        font-size: 1.7rem;
+        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 650px) {
     .a-page--intro .a-countdown > div {
-        font-size: 3rem;
-        line-height: 4.5rem;
+        font-size: 5rem;
+        line-height: 4rem;
     }
 
     .a-page--intro .a-page__title.a-page__title--big {
@@ -278,10 +274,6 @@
     .a-page--intro .a-category > .a-category__text > .a-category__text {
         padding: 0;
     }
-
-    .a-page--intro .a-countdown-indicators .a-countdown-indicators__indicator {
-        font-size: 1.5rem;
-    }
 }
 
 @media (max-width: 500px) {
@@ -291,7 +283,7 @@
     }
 
     .a-page--intro .a-countdown-indicators .a-countdown-indicators__indicator {
-        font-size: 1rem;
+        font-size: 2rem;
     }
 }
 
