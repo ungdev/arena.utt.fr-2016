@@ -6,12 +6,20 @@ const activatePanel = function ($sourceTab) {
 
 
     const $activeTab = $tabContainer.querySelector('.a-category__tabs__tab--active');
+    const index      = Array.from($tabContainer.children).indexOf($activeTab);
 
-    const index = Array.from($tabContainer.children).indexOf($activeTab);
+    const $activePanel = $panelContainer.querySelector('.a-category__panels__panel--active');
+    $activePanel.classList.remove('a-category__panels__panel--active');
 
-    $panelContainer.querySelector('.a-category__panels__panel--active').classList.remove('a-category__panels__panel--active');
+    const $newTab = $panelContainer.children[index];
 
-    $panelContainer.children[index].classList.add('a-category__panels__panel--active');
+    setTimeout(() => {
+        $activePanel.style.display = 'none';
+
+        $newTab.style.display = 'block';
+        $newTab.clientWidth; // reflow
+        $newTab.classList.add('a-category__panels__panel--active');
+    }, 200);
 };
 
 $tabs.forEach($tab => {
@@ -26,3 +34,4 @@ $tabs.forEach($tab => {
         activatePanel($tab);
     });
 });
+1

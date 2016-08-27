@@ -1,6 +1,11 @@
 .a-page--intro {
     padding: 0 5rem;
 
+    .a--edge {
+        margin-left: -5rem;
+        margin-right: -5rem;
+    }
+
     .a-page__title {
         color: var(--accent);
         font-family: var(--fontFamilyTitleOblique);
@@ -62,8 +67,7 @@
     }
 
     .a-category {
-        height: var(--categoryIconSize);
-        margin-bottom: 10rem;
+        margin-bottom: 3rem;
 
         > .a-category__icon {
             float: left;
@@ -93,30 +97,33 @@
 
         .a-category__tabs {
             display: flex;
-            justify-content: space-around;
+
+            a {
+                padding: 15px 0;
+            }
         }
 
         .a-category__tabs__tab {
+            background-color: color(var(--dark) a(50%));
+            flex: 1;
             font-size: 1.2rem;
             opacity: 0.5;
+            padding: 10px 0;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-            transition: opacity .2s ease;
+            transition: opacity .2s ease, background-color .5s ease;
 
             &.a-category__tabs__tab--active {
+                background-color: var(--dark);
                 opacity: 1;
             }
         }
 
-        .a-category__panels {
-            margin-top: 20px;
-        }
-
         .a-category__panels__panel {
+            display: none;
             background: var(--dark);
-            left: 0;
             opacity: 0;
-            position: absolute;
-            transition: .3s opacity ease;
+            padding: 1rem 0;
+            transition: .2s opacity ease;
             width: 100%;
 
             &.a-category__panels__panel--active {
@@ -212,6 +219,12 @@
 @media (max-width: 1050px) {
     .a-page--intro {
         padding: 0 3rem;
+
+
+        .a--edge {
+            margin-left: -3rem;
+            margin-right: -3rem;
+        }
     }
 
     .a-page--intro .a-page__title.a-page__title--big {
@@ -346,5 +359,10 @@
 @media (max-width: 400px) {
     .a-page--intro {
         padding: 0 1rem;
+
+        .a--edge {
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
     }
 }
