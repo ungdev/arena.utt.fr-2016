@@ -12,3 +12,4 @@ require('./scroll.js');
 require('./menu.js');
 require('./countdown.js');
 require('./modal.js');
+require('./tabs.js');
