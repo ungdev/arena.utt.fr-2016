@@ -3,7 +3,7 @@
 }
 
 .a-modal {
-    background-color: var(--blue);
+    background-color: color(var(--dark) a(80%));
     display: block;
     height: 338px;
     overflow: hidden;
@@ -23,15 +23,22 @@
     &.a-modal--switched {
         height: 210px;
 
+        .a-modal__register {
+            top: -335px;
+        }
+
         .a-modal__login {
             top: 15px;
         }
     }
 
-    .a-menu--fixed-top + main > &.a-modal--opened {
+    .a-menu--fixed-top + main > & {
         position: fixed;
         top: 70px;
-        right: 6px;
+
+        &.a-modal--opened {
+            right: 6px;
+        }
     }
 
     .a-modal__title {
@@ -117,8 +124,15 @@
         }
     }
 
+    .a-modal__register {
+        left: 0;
+        position: absolute;
+        top: 15px;
+        transition: .3s top ease;
+        width: 100%;
+    }
+
     .a-modal__login {
-        background-color: var(--blue);
         height: 200px;
         left: 0;
         position: absolute;
@@ -146,7 +160,8 @@
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label {
     cursor: pointer;
-    padding-left: 40px;
+    margin-left: 10px;
+    padding-left: 45px;
     position: relative;
 }
 

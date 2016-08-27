@@ -3,7 +3,7 @@ const $modalOpeners = Array.from(document.querySelectorAll('[data-modal]'));
 const $modalCloser  = document.querySelector('.a-modal__closer');
 const $switchers    = Array.from(document.querySelectorAll('.a-modal__switch'));
 
-function elasticTransition ($modal) {
+const elasticTransition = function ($modal) {
     $modal.style.transition = '.4s right cubic-bezier(0.175, 0.885, 0.320, 1.275)';
     $modal.clientWidth;
     setTimeout(() => {
@@ -17,7 +17,7 @@ $modalOpeners.forEach($modalOpener => {
         e.preventDefault();
 
         if ($modal) {
-            //elasticTransition($modal);
+            elasticTransition($modal);
             $modal.classList.add('a-modal--opened');
         }
 
@@ -35,7 +35,7 @@ $switchers.forEach($switcher => {
 $modalCloser.addEventListener('click', e => {
     e.preventDefault();
 
-    //elasticTransition($modal);
+    elasticTransition($modal);
 
     $modal.classList.remove('a-modal--opened');
 }, false);
