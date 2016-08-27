@@ -66,34 +66,51 @@
 
         <main>
             <div class="a-modal" id="modal-login">
-                <h1 class="a-modal__register-title">Inscription</h1>
-                <a class="a-modal__closer">&#x2715;</a>
-                <form method="post" action="/post">
-                    <div class="a-modal__input">
-                        <input type="text" placeholder="Pseudo" />
-                    </div>
-                    <div class="a-modal__input">
-                        <input type="password" placeholder="Mot de passe" />
-                    </div>
-                    <div class="a-modal__input">
-                        <input type="password" placeholder="Confirmation" />
-                    </div>
-                    <div class="a-modal__input">
-                        <input type="email" placeholder="Mail" />
-                    </div>
-                    <div class="a-modal__input">
-                        <input type="checkbox" name="rules" id="rules">
-                        <label for="rules">J'accepte les règles du tournoi</label>
-                    </div>
-                    <div class="a-modal__input">
-                        <input type="checkbox" name="conditions" id="conditions">
-                        <label for="conditions">J'accepte les conditions générales</label>
-                    </div>
-                    <div class="a-modal__submit">
-                        <input type="submit" class="a-font-bignoodle" value="Inscription" />
-                        <a href="#">Connexion</a>
-                    </div>
-                </form>
+                <div class="a-modal__register">
+                    <h1 class="a-modal__title">Inscription</h1>
+                    <a class="a-modal__closer">&#x2715;</a>
+                    <form method="post" action="/post">
+                        <div class="a-modal__input">
+                            <input type="text" placeholder="Pseudo" />
+                        </div>
+                        <div class="a-modal__input">
+                            <input type="password" placeholder="Mot de passe" />
+                        </div>
+                        <div class="a-modal__input">
+                            <input type="password" placeholder="Confirmation" />
+                        </div>
+                        <div class="a-modal__input">
+                            <input type="email" placeholder="Mail" />
+                        </div>
+                        <div class="a-modal__input">
+                            <input type="checkbox" name="rules" id="rules">
+                            <label for="rules">J'accepte les règles du tournoi</label>
+                        </div>
+                        <div class="a-modal__input">
+                            <input type="checkbox" name="conditions" id="conditions">
+                            <label for="conditions">J'accepte les conditions générales</label>
+                        </div>
+                        <div class="a-modal__submit">
+                            <input type="submit" class="a-font-bignoodle" value="Inscription" />
+                            <a href="#" class="a-modal__switch">Connexion</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="a-modal__login">
+                    <h1 class="a-modal__title">Connexion</h1>
+                    <form method="post" action="/login">
+                        <div class="a-modal__input">
+                            <input type="text" placeholder="Pseudo" />
+                        </div>
+                        <div class="a-modal__input">
+                            <input type="password" placeholder="Mot de passe" />
+                        </div>
+                        <div class="a-modal__submit">
+                            <input type="submit" class="a-font-bignoodle" value="Connexion" />
+                            <a href="#" class="a-modal__switch">Inscription</a>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div class="a-page a-page--full-height a-page--full-width a-hero">

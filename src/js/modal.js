@@ -1,5 +1,7 @@
+const $modal        = document.querySelector('.a-modal');
 const $modalOpeners = Array.from(document.querySelectorAll('[data-modal]'));
 const $modalCloser  = document.querySelector('.a-modal__closer');
+const $switchers    = Array.from(document.querySelectorAll('.a-modal__switch'));
 
 function elasticTransition ($modal) {
     $modal.style.transition = '.4s right cubic-bezier(0.175, 0.885, 0.320, 1.275)';
@@ -14,21 +16,26 @@ $modalOpeners.forEach($modalOpener => {
     $modalOpener.addEventListener('click', e => {
         e.preventDefault();
 
-        const $modal = document.querySelector($modalOpener.getAttribute('data-modal'));
-
         if ($modal) {
-            elasticTransition($modal);
+            //elasticTransition($modal);
             $modal.classList.add('a-modal--opened');
         }
 
     }, false);
 });
 
+$switchers.forEach($switcher => {
+    $switcher.addEventListener('click', e => {
+        e.preventDefault();
+
+        $modal.classList.toggle('a-modal--switched');
+    });
+});
+
 $modalCloser.addEventListener('click', e => {
     e.preventDefault();
 
-    const $activeModal = document.querySelector('.a-modal.a-modal--opened');
-    elasticTransition($activeModal);
+    //elasticTransition($modal);
 
-    $activeModal.classList.remove('a-modal--opened');
+    $modal.classList.remove('a-modal--opened');
 }, false);
