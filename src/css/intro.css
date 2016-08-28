@@ -346,6 +346,10 @@
         font-size: 2rem;
     }
 
+    .a-page--intro .a-category .a-category__tabs__tab {
+        font-size: 1rem;
+    }
+
     .a-page--intro .a-category .a-category__list {
         column-count: 1;
 
