@@ -3,23 +3,53 @@ const $modalOpeners = Array.from(document.querySelectorAll('[data-modal]'));
 const $modalCloser  = document.querySelector('.a-modal__closer');
 const $switchers    = Array.from(document.querySelectorAll('.a-modal__switch'));
 
-const elasticTransition = function ($modal) {
-    $modal.style.transition = '.4s right cubic-bezier(0.175, 0.885, 0.320, 1.275)';
-    $modal.clientWidth;
-    setTimeout(() => {
-        $modal.style.transition = '';
-        $modal.clientWidth;
-    }, 400);
-}
+let opened = false;
+
+const animationend = (() => {
+    const el = document.createElement('fakeelement');
+    const animations = {
+        'animation'      : 'animationend',
+        'OAnimation'     : 'oAnimationEnd',
+        'MozAnimation'   : 'animationend',
+        'WebkitAnimation': 'webkitAnimationEnd'
+    };
+
+    for(let t of Object.keys(animations)) {
+        if (el.style[t] !== undefined) {
+            return animations[t];
+        }
+    }
+})();
+
+const once = (elem, name, listener) => {
+    console.log('adding listener:', name, 'on', elem);
+    const onceListener = () => {
+        elem.removeEventListener(name, onceListener);
+
+        listener();
+    };
+
+    elem.addEventListener(name, onceListener, false);
+};
 
 $modalOpeners.forEach($modalOpener => {
     $modalOpener.addEventListener('click', e => {
         e.preventDefault();
 
-        if ($modal) {
-            elasticTransition($modal);
-            $modal.classList.add('a-modal--opened');
+        if (opened) {
+            return;
         }
+
+        opened = true;
+
+        $modal.classList.add('a--animated');
+        $modal.classList.add('a--bounceIn');
+
+        once($modal, animationend, () => {
+            $modal.classList.remove('a--animated');
+            $modal.classList.remove('a--bounceIn');
+            $modal.classList.remove('a-modal--hidden');
+        });
 
     }, false);
 });
@@ -35,7 +65,14 @@ $switchers.forEach($switcher => {
 $modalCloser.addEventListener('click', e => {
     e.preventDefault();
 
-    elasticTransition($modal);
+    opened = false;
 
-    $modal.classList.remove('a-modal--opened');
+    $modal.classList.add('a--animated');
+    $modal.classList.add('a--bounceOut');
+
+    once($modal, animationend, () => {
+        $modal.classList.remove('a--animated');
+        $modal.classList.remove('a--bounceOut');
+        $modal.classList.add('a-modal--hidden');
+    });
 }, false);

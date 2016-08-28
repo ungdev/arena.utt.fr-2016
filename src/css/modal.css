@@ -9,15 +9,15 @@
     overflow: hidden;
     padding: 15px .5rem;
     position: absolute;
-    right: -300px;
+    right: 50px;
     top: 130px;
     transition: .3s right ease, .3s height ease;
     width: 300px;
     z-index: 3;
 
-    &.a-modal--opened {
-        display: block;
-        right: 50px;
+    &.a-modal--hidden {
+        opacity: 0;
+        transform: scale3d(0, 0, 0);
     }
 
     &.a-modal--switched {
@@ -35,10 +35,7 @@
     .a-menu--fixed-top + main > & {
         position: fixed;
         top: 70px;
-
-        &.a-modal--opened {
-            right: 6px;
-        }
+        right: 6px;
     }
 
     .a-modal__title {
@@ -143,11 +140,66 @@
 }
 
 @media (max-width: 400px) {
-    .a-modal.a-modal--opened {
+    .a-modal {
         left: 0;
         margin: 0 auto;
         right: 0;
     }
+}
+
+/* Bouncers */
+.a--bounceIn {
+  -webkit-animation-name: bounceIn;
+  animation-name: bounceIn;
+}
+
+.a--bounceOut {
+  -webkit-animation-name: bounceOut;
+  animation-name: bounceOut;
+}
+
+.a--animated.a--bounceIn,
+.a--animated.a--bounceOut {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50%, 55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  80% {
+    opacity: 1;
+    transform: scale3d(.97, .97, .97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes bounceOut {
+  20% {
+    transform: scale3d(.9, .9, .9);
+  }
+
+  50%, 55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
 }
 
 /* Checkboxes */
