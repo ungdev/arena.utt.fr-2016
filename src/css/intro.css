@@ -113,6 +113,15 @@
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
             transition: opacity .2s ease;
 
+            &:not(:last-child) {
+                border-right: 1px solid var(--mainColor);
+            }
+
+            /* Also add left border to have correct opacity on borders */
+            &:not(:first-child) {
+                border-left: 1px solid var(--mainColor);
+            }
+
             &.a-category__tabs__tab--active {
                 background-color: var(--dark);
                 opacity: 1;
@@ -141,6 +150,10 @@
 
             &.a-category__list--two {
                 column-count: 2;
+            }
+
+            &.a-category__list--one {
+                column-count: 1;
             }
 
             li {
