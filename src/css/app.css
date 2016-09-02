@@ -59,6 +59,12 @@ body {
     overflow-x: hidden;
 }
 
+@-moz-document url-prefix() {
+    h1, h2, h3, .a-font-bignoodle {
+        letter-spacing: 0 !important;
+    }
+}
+
 h1, h2, h3, .a-font-bignoodle {
     font-family: var(--fontFamilyTitle);
     letter-spacing: 1px;
