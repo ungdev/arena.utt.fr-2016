@@ -23,7 +23,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('css!postcss'),
+                loader: ExtractTextPlugin.extract('css?minimize!postcss'),
             },
             {
                 test: /\.(png|jpg|xml|json|svg|ico)$/,

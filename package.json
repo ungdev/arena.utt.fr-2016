@@ -4,8 +4,8 @@
   "description": "Site externe UA 2016",
   "scripts": {
     "start": "webpack-dev-server --port 8082 --host 0.0.0.0",
-    "build": "rm -r public/bundle.js public/styles.css public/fonts public/img && webpack",
-    "prod": "static public -a 0.0.0.0 -p 8080",
+    "build": "rm -rf public/bundle.js public/styles.css public/fonts public/img && webpack",
+    "prod": "cross-env NODE_ENV=production && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",
@@ -31,9 +31,13 @@
     "webpack-dev-server": "^1.8.2"
   },
   "dependencies": {
+    "compression": "^1.6.2",
     "countdown": "^2.6.0",
-    "node-static": "^0.7.8",
+    "cross-env": "^2.0.1",
+    "express": "^4.14.0",
+    "helmet": "^2.1.2",
     "normalize.css": "^4.1.1",
+    "serve-static": "^1.11.1",
     "smooth-scroll": "github:cferdinandi/smooth-scroll"
   }
 }
