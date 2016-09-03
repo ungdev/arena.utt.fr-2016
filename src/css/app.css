@@ -46,6 +46,10 @@
     box-sizing: border-box;
 }
 
+html {
+    line-height: normal !important;
+}
+
 html, body, main {
     background-color: var(--blue);
     height: 100%;
