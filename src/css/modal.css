@@ -9,7 +9,7 @@
     overflow: hidden;
     padding: 15px .5rem;
     position: absolute;
-    right: 50px;
+    right: calc(3.75% - 5px);
     top: 130px;
     transition: .3s right ease, .3s height ease;
     width: 300px;
