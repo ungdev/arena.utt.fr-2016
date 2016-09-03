@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --port 8082 --host 0.0.0.0",
     "build": "rm -r public/bundle.js public/styles.css public/fonts public/img && webpack",
+    "prod": "static public -a 0.0.0.0 -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Gabriel Juchault <gabriel.juchault@gmail.com>",
