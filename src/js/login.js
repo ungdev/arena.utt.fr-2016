@@ -1,6 +1,8 @@
 const Humane = require('humane-js');
 const axios  = require('axios');
 
+const $modal = document.getElementById('modal-login');
+
 const $registerForm = document.getElementById('registerForm');
 const $loginForm    = document.getElementById('loginForm');
 
@@ -17,9 +19,21 @@ const $loginPassword = document.getElementById('loginPassword');
 if ($registerForm) {
     $registerForm.addEventListener('submit', e => {
         e.preventDefault();
+        console.log('submit');
 
         if ($registerPassword1.value !== $registerPassword2.value) {
             Humane.log('Les mots de passe ne correspondent pas');
+            return;
+        }
+
+        if (!$registerRules.checked) {
+            Humane.log('Veuillez accepter les règles du tournoi');
+            return;
+        }
+
+        if (!$registerConditions.checked) {
+            Humane.log('Veuillez accepter les conditions générales');
+            return;
         }
 
         axios
@@ -28,9 +42,34 @@ if ($registerForm) {
                 password: $registerPassword1.value,
                 email   : $registerMail.value
             })
-            .then(res => console.log(res))
+            .then(res => {
+                Humane.log('Compte créé avec succès. Vous pouvez vous connecter.');
+                $registerForm.reset();
+                $modal.classList.add('a-modal--switched');
+                $loginNickname.focus();
+            })
             .catch(err => {
-                Humane.log('Pseudo ou mot de passe invalide');
+                if (err.response.data.error === 'pwdlen') {
+                    return Humane.log('Mot de passe trop court (6 caractères minimum)');
+                }
+
+                if (err.response.data.error === 'namelen') {
+                    return Humane.log('Nom d\'utilisateur trop court (6 caractères minimum)');
+                }
+
+                if (err.response.data.error === 'mail') {
+                    return Humane.log('E-Mail invalide');
+                }
+
+                if (err.response.data.error === 'duplicate') {
+                    if (err.response.data.field === 'name') {
+                        return Humane.log('Nom d\'utilisateur déjà existant');
+                    } else if (err.response.data.field === 'email') {
+                        return Humane.log('E-mail déjà existant');
+                    }
+                }
+
+                Humane.log('Impossible de créer le compte');
             });
     });
 

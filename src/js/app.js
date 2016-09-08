@@ -7,3 +7,4 @@ require('./countdown.js');
 require('./modal.js');
 require('./tabs.js');
 require('./login.js');
+require('./dashboard.js');

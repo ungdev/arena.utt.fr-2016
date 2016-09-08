@@ -11,6 +11,14 @@
         }
     }
 
+    .a-anchor {
+        display: none;
+
+        &.a-anchor--active {
+            display: block;
+        }
+    }
+
     .a-dashboard__back {
         background-color: var(--accent);
         font-size: 3rem;

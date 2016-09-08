@@ -8,5 +8,13 @@
         "user": "",
         "pwd": "",
         "dialect": "mariadb"
+    },
+    "mail": {
+        "host": "mailtrap.io",
+        "port": 2525,
+        "auth": {
+            "user": "foo",
+            "pass": "bar"
+        }
     }
 }
