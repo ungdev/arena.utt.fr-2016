@@ -1,0 +1,12 @@
+{
+    "secret": "randomString64bytes",
+    "port": "8080",
+    "isHTTPS": true,
+    "db": {
+        "host": "localhost",
+        "name": "arena.utt.fr",
+        "user": "",
+        "pwd": "",
+        "dialect": "mariadb"
+    }
+}

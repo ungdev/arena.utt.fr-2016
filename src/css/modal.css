@@ -72,29 +72,6 @@
             text-align: left;
             width: 95%;
         }
-
-        input[type="text"], input[type="password"], input[type="email"] {
-            background-color: var(--accent);
-            color: var(--dark);
-            border: 0;
-            padding: 5px 10px;
-            font-size: 1rem;
-
-            &::-webkit-input-placeholder {
-                color: #000;
-                opacity: 1;
-            }
-
-            &::-moz-placeholder {
-               color: #000;
-               opacity: 1;
-            }
-
-            &:-ms-input-placeholder {
-               color: #000;
-               opacity: 1;
-            }
-        }
     }
 
     .a-modal__submit {
@@ -103,14 +80,6 @@
         justify-content: space-around;
         margin-left: 7.5px;
         margin-top: 25px;
-
-        input[type="submit"] {
-            border: 0;
-            background-color: var(--accent);
-            box-shadow: 5px 5px 0 rgba(0, 0, 0, .75);
-            font-size: 2rem;
-            padding: 5px 10px;
-        }
 
         a {
             color: var(--accent);

@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const cssnext  = require('postcss-cssnext');
 const nested   = require('postcss-nested');
-const atImport = require('postcss-import')
+const atImport = require('postcss-import');
 
 const colors = require('colors');
 
@@ -23,20 +23,12 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('css?minimize!postcss'),
-            },
-            {
-                test: /\.(png|jpg|xml|json|svg|ico)$/,
-                loader: 'file?name=img/[name].[ext]'
+                loader: ExtractTextPlugin.extract('css?minimize&-url!postcss'),
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel'
-            },
-            {
-                test: /\.(eot|svg|ttf|woff|woff2)$/,
-                loader: 'file?name=fonts/[name].[ext]'
             }
         ]
     },

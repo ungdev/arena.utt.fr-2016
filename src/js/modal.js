@@ -62,17 +62,19 @@ $switchers.forEach($switcher => {
     });
 });
 
-$modalCloser.addEventListener('click', e => {
-    e.preventDefault();
+if ($modalCloser) {
+    $modalCloser.addEventListener('click', e => {
+        e.preventDefault();
 
-    opened = false;
+        opened = false;
 
-    $modal.classList.add('a--animated');
-    $modal.classList.add('a--bounceOut');
+        $modal.classList.add('a--animated');
+        $modal.classList.add('a--bounceOut');
 
-    once($modal, animationend, () => {
-        $modal.classList.remove('a--animated');
-        $modal.classList.remove('a--bounceOut');
-        $modal.classList.add('a-modal--hidden');
-    });
-}, false);
+        once($modal, animationend, () => {
+            $modal.classList.remove('a--animated');
+            $modal.classList.remove('a--bounceOut');
+            $modal.classList.add('a-modal--hidden');
+        });
+    }, false);
+}

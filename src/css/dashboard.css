@@ -1,0 +1,186 @@
+.a-dashboard {
+    main {
+        padding-top: 100px;
+
+        .a-page {
+            max-width: 1200px;
+
+            p {
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    .a-dashboard__back {
+        background-color: var(--accent);
+        font-size: 3rem;
+        position: absolute;
+        height: 50px;
+        line-height: 50px;
+        padding-left: 40px;
+        padding-right: 10px;
+        top: 180px;
+        left: 0;
+
+        svg {
+            position: absolute;
+            top: 7.5px;
+            left: 0;
+        }
+    }
+
+    .a-page__title {
+        margin-top: 1rem;
+    }
+
+    .a-dashboard__teams {
+        display: flex;
+        justify-content: space-around;
+
+        > div {
+            flex: 1 0;
+            max-width: 450px;
+            padding: 0 15px;
+        }
+    }
+
+    .a-dashboard__payment {
+        background-color: var(--mainColor);
+        color: var(--dark);
+        font-size: 1.4rem;
+        margin-top: 30px;
+        padding: 20px;
+    }
+
+    .a-dashboard__input {
+        text-align: center;
+
+        > input[type="text"], select {
+            width: 100%;
+        }
+
+        > input[type="submit"] {
+            min-width: 50%;
+        }
+
+        &:not(:first-child) {
+            margin-top: 10px;
+        }
+    }
+
+    .a-spotlights {
+        color: var(--mainColor);
+        font-size: 5rem;
+        height: 300px;
+        line-height: 300px;
+        margin: 30px 0;
+        text-shadow: 2px 2px 0 var(--accent), 4px 4px 0 var(--dark);
+        width: 100%;
+
+        .a-spotlights__spotlight {
+            background-position: top;
+            background-size: cover;
+            float: left;
+            height: 100%;
+            position: relative;
+            width: calc(100% / 3);
+
+            &:after {
+                content: ' ';
+                background-color: rgba(0, 0, 0, 0.3);
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                transition: background-color .3s;
+                width: 100%;
+            }
+
+            &.a-spotlights__spotlight--lol {
+                background-image: url('/img/lol.png');
+            }
+
+            &.a-spotlights__spotlight--overwatch {
+                background-image: url('/img/overwatch.png');
+            }
+
+            &.a-spotlights__spotlight--csgo {
+                background-image: url('/img/csgo.png');
+                background-position: center;
+            }
+        }
+    }
+
+    label {
+        display: inline-block;
+        color: #fff;
+        font-size: 1rem;
+        line-height: 20px;
+        text-align: left;
+    }
+
+    table {
+        border-collapse: collapse;
+        font-size: 1rem;
+        margin-top: 30px;
+
+        th, td {
+            border: 1px solid var(--grey);
+            padding: 10px;
+        }
+
+        button {
+            background-color: #ffe500;
+            border: 0;
+            box-shadow: 5px 5px 0 rgba(0,0,0,.75);
+            color: #000;
+            font-size: 2rem;
+            padding: 5px 10px;
+            text-shadow: none;
+
+            &:hover {
+                text-shadow: none;
+            }
+        }
+    }
+}
+
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--link,
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--right {
+        font-size: 2.4rem;
+        padding: 0 20px;
+    }
+
+@media (max-width: 824px) {
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--link,
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--right {
+        display: block;
+    }
+
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--right-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 770px) {
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--link,
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--right {
+        font-size: 1.6rem;
+        padding: 0 10px;
+    }
+
+    .a-dashboard .a-spotlights .a-spotlights__spotlight span {
+        display: none;
+    }
+}
+
+@media (max-width: 580px) {
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--link,
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--right {
+        display: none;
+    }
+
+    .a-dashboard .a-menu > .a-menu__item.a-menu__item--right-mobile {
+        display: block;
+    }
+}

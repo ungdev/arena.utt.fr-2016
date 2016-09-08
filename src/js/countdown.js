@@ -13,6 +13,8 @@ const $countdownMonths = document.querySelector('.a-countdown__months');
 const $countdownDays   = document.querySelector('.a-countdown__days');
 const $countdownHours  = document.querySelector('.a-countdown__hours');
 
-$countdownMonths.innerHTML = months;
-$countdownDays.innerHTML   = days;
-$countdownHours.innerHTML  = hours;
+if ($countdownMonths) {
+    $countdownMonths.innerHTML = months;
+    $countdownDays.innerHTML   = days;
+    $countdownHours.innerHTML  = hours;
+}

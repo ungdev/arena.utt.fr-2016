@@ -3,8 +3,10 @@ const waypoint = parseInt(getComputedStyle($sticky).top, 10);
 
 const toggleClass = top => {
     if (top >= waypoint) {
+        document.body.classList.add('a--menu-fixed-top');
         $sticky.classList.add('a-menu--fixed-top');
     } else {
+        document.body.classList.remove('a--menu-fixed-top');
         $sticky.classList.remove('a-menu--fixed-top');
     }
 }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="/img/manifest.json">
+        <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/img/favicon.ico">
+        <meta name="msapplication-config" content="/img/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+
+        <meta name="keywords" content="UTT Arena LAN Party Troyes Jeu Vidéo Festival Cube">
+        <meta name="description" content="L'UTT Arena ouvre ses portes le 9, 10 et 11 Décembre. Venez retrouver l'ambiance d'une lan party authentique avec votre équipe!">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>UTT Arena 2016</title>
+    </head>
+    <body class="a-dashboard">
+        <nav class="a-mobile-menu">
+            <div class="a-font-bignoodle a-menu__item a-menu__item--link">
+                <a data-scroll href="#a-anchor--event">Équipe</a>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--link">
+                <a data-scroll href="#a-anchor--partners">Paiement</a>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--link">
+                <a href="/">Retour au site</a>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--right">
+                <a href="/logout">Déconnexion</a>
+            </div>
+        </nav>
+
+        <nav class="a-menu a-menu--fixed-top" data-scroll-header>
+            <div class="a-menu__item a-menu__item--brand">
+                <img class="a-menu__brandicon" src="/img/logo.small.png" height="86" width="100"/>
+                <span class="a-font-bignoodle a-font-bignoodle--oblique a-menu__brandname">UA 2016</span>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--link">
+                <a data-scroll href="#a-anchor--team">Équipe</a>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--link">
+                <a data-scroll href="#a-anchor--partners">Paiement</a>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--link">
+                <a href="/">Retour au site</a>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--right">
+                <a href="/logout">Déconnexion</a>
+            </div>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--right a-menu__item--right-mobile">Menu &#9776;</div>
+        </nav>
+
+        <main>
+            <div class="a-page a-page--intro a-page--blue">
+                <h2 id="a-anchor--team" class="a-page__title a-page__title--big">Crée ton équipe</h2>
+                <h3 class="a-page__title a-page__title--medium">Participez aux spotlights, les compétitions des jeux phares du moment</h3>
+                <p>
+                    Les spotlights sont des tournois commentés, streamés, et les équipes finalistes remportent des lots. Tous vos sens devront être affutés pour pouvoir survivre à une journée entière de compétition&nbsp;!
+                </p>
+                <div class="a-dashboard__teams">
+                    <div>
+                        <h2>Créez votre équipe</h2>
+                        <form method="post" action="/createTeam">
+                            <div class="a-dashboard__input">
+                                <input type="text" placeholder="Nom de l'équipe" name="createTeamName" id="createTeamName"/>
+                            </div>
+                            <div class="a-dashboard__input">
+                                <select name="createTeamSpotlight" id="createTeamSpotlight">
+                                    <option value="" disabled selected>Spotlight</option>
+                                    <option value="lol">League of Legends</option>
+                                    <option value="csgo">Counter-Strike: Global Offensive</option>
+                                    <option value="overwatch">Overwatch</option>
+                                </select>
+                            </div>
+                            <div class="a-dashboard__input">
+                                <input type="submit" class="a-font-bignoodle" value="Créer">
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <h2>Rejoignez une équipe</h2>
+                        <form method="post" action="/joinTeam">
+                            <div class="a-dashboard__input">
+                                <input type="text" name="joinTeamName" id="joinTeamName">
+                            </div>
+                            <div class="a-dashboard__input">
+                                <input type="submit" class="a-font-bignoodle" value="Rejoindre">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <table width="100%">
+                        <thead>
+                            <th>Membre</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Membre 1</td>
+                                <td>Accepté, non payé &#9888;</td>
+                            </tr>
+                            <tr>
+                                <td>Membre 1</td>
+                                <td>Payé &#10004;</td>
+                            </tr>
+                            <tr>
+                                <td>Membre 2</td>
+                                <td>
+                                    <button class="a-font-bignoodle">Accepter</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="a-dashboard__payment">
+                    <strong>Tous les membres</strong> de l'équipe doivent avoir payé leur place pour valider l'inscription au spotlight.
+                </div>
+                <br/>
+                <div class="a-spotlights">
+                    <div class="a-spotlights__spotlight a-spotlights__spotlight--lol a-font-bignoodle">
+                    </div>
+                    <div class="a-spotlights__spotlight a-spotlights__spotlight--overwatch a-font-bignoodle">
+                    </div>
+                    <div class="a-spotlights__spotlight a-spotlights__spotlight--csgo a-font-bignoodle">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script async src="bundle.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="/fonts/big_noodle_titling.css">
+        <link rel="stylesheet" href="/fonts/muli-regular.css">
+    </body>
+</html>

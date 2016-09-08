@@ -90,13 +90,18 @@ h3 {
     font-size: var(--h3Size);
 }
 
-button {
+button, input[type="submit"] {
+    cursor: pointer;
+}
+
+button, .a-button {
     background-color: transparent;
     border-left-width: 3px;
     border-right-width: 3px;
     border: 1px solid var(--accent);
     color: var(--mainColor);
     cursor: pointer;
+    display: inline-block;
     font-family: var(--fontFamilyTitleOblique);
     font-weight: bold;
     letter-spacing: 1px;
@@ -106,6 +111,46 @@ button {
     &:hover {
         text-shadow: 3px 3px 0 var(--accent), 6px 6px 0 var(--dark);
     }
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+    background-color: var(--accent);
+    color: var(--dark);
+    border: 0;
+    font-size: 1rem;
+    padding: 5px 10px;
+
+    &::-webkit-input-placeholder {
+        color: #000;
+        opacity: 1;
+    }
+
+    &::-moz-placeholder {
+       color: #000;
+       opacity: 1;
+    }
+
+    &:-ms-input-placeholder {
+       color: #000;
+       opacity: 1;
+    }
+}
+
+input[type="submit"] {
+    border: 0;
+    background-color: var(--accent);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, .75);
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+
+select {
+    background-color: var(--accent);
+    color: var(--dark);
+    border: 0;
+    padding: 4px 7.5px;
+    font-size: 1rem;
 }
 
 p {

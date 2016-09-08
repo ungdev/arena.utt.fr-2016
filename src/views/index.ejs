@@ -36,9 +36,15 @@
             <div class="a-font-bignoodle a-menu__item a-menu__item--link a-menu__item--no-border">
                 <a data-scroll href="#a-anchor--contacts">Contacts</a>
             </div>
-            <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
-                <a href="#">Connexion</a>
-            </div>
+            <% if (isLoggedIn) { %>
+                <div class="a-font-bignoodle a-menu__item a-menu__item--right">
+                    <a href="/dashboard">Mon compte</a>
+                </div>
+            <% } else { %>
+                <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
+                    <a href="#">Connexion</a>
+                </div>
+            <% } %>
         </nav>
 
         <nav class="a-menu" data-scroll-header>
@@ -61,9 +67,15 @@
             <div class="a-font-bignoodle a-menu__item a-menu__item--link a-menu__item--no-border">
                 <a data-scroll href="#a-anchor--contacts">Contacts</a>
             </div>
-            <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
-                <a href="#">Connexion</a>
-            </div>
+            <% if (isLoggedIn) { %>
+                <div class="a-font-bignoodle a-menu__item a-menu__item--right">
+                    <a href="/dashboard">Mon compte</a>
+                </div>
+            <% } else { %>
+                <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
+                    <a href="#">Connexion</a>
+                </div>
+            <% } %>
             <div class="a-font-bignoodle a-menu__item a-menu__item--right a-menu__item--right-mobile">Menu &#9776;</div>
         </nav>
 
@@ -72,26 +84,26 @@
                 <a class="a-modal__closer">&#x2715;</a>
                 <div class="a-modal__register">
                     <h1 class="a-modal__title">Inscription</h1>
-                    <form method="post" action="/post">
+                    <form method="post" action="/register" id="registerForm">
                         <div class="a-modal__input">
-                            <input type="text" placeholder="Pseudo" />
+                            <input type="text" placeholder="Pseudo" id="registerNickname" />
                         </div>
                         <div class="a-modal__input">
-                            <input type="password" placeholder="Mot de passe" />
+                            <input type="password" placeholder="Mot de passe" id="registerPassword1" />
                         </div>
                         <div class="a-modal__input">
-                            <input type="password" placeholder="Confirmation" />
+                            <input type="password" placeholder="Confirmation" id="registerPassword2" />
                         </div>
                         <div class="a-modal__input">
-                            <input type="email" placeholder="Mail" />
+                            <input type="email" placeholder="Mail" id="registerMail" />
                         </div>
                         <div class="a-modal__input">
-                            <input type="checkbox" name="rules" id="rules">
-                            <label for="rules">J'accepte les règles du tournoi</label>
+                            <input type="checkbox" name="registerRules" id="registerRules" />
+                            <label for="registerRules">J'accepte les règles du tournoi</label>
                         </div>
                         <div class="a-modal__input">
-                            <input type="checkbox" name="conditions" id="conditions">
-                            <label for="conditions">J'accepte les conditions générales</label>
+                            <input type="checkbox" name="registerConditions" id="registerConditions" />
+                            <label for="registerConditions">J'accepte les conditions générales</label>
                         </div>
                         <div class="a-modal__submit">
                             <input type="submit" class="a-font-bignoodle" value="Inscription" />
@@ -101,12 +113,12 @@
                 </div>
                 <div class="a-modal__login">
                     <h1 class="a-modal__title">Connexion</h1>
-                    <form method="post" action="/login">
+                    <form method="post" action="/login" id="loginForm">
                         <div class="a-modal__input">
-                            <input type="text" placeholder="Pseudo" />
+                            <input type="text" placeholder="Pseudo" id="loginNickname" />
                         </div>
                         <div class="a-modal__input">
-                            <input type="password" placeholder="Mot de passe" />
+                            <input type="password" placeholder="Mot de passe" id="loginPassword" />
                         </div>
                         <div class="a-modal__submit">
                             <input type="submit" class="a-font-bignoodle" value="Connexion" />
@@ -132,7 +144,7 @@
                 <h2 id="a-anchor--event" class="a-page__title a-page__title--big">Rassemble ton matériel</h2>
                 <h3 class="a-page__title a-page__title--medium">Venez retrouver l'ambiance d'une lan party authentique avec votre équipe.</h3>
                 <p class="a-page__text">
-                    L'UTT Arena revient pour sa 15e édition les 9, 10 et 11 Décembre 2016. Cette édition aura lieu comme l'année dernière dans le cadre du Festival des Jeux au Cube de Troyes. Au programme 3 tournois sur des incontournables de l'E-sports, du skill, des personnalités et des rencontres, de nombreuses animations et lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. Alors récupère ta souris, ton casque et ton câble réseau, branche ton écran et vient imposer la domination de ton équipe dans le Cube.
+                    L'UTT Arena revient pour sa 15<sup>ème</sup> édition les 9, 10 et 11 décembre 2016. Cette édition aura lieu comme l'année dernière dans le cadre du Festival des Jeux au Cube de Troyes. Au programme 3 tournois sur des incontournables de l'E-sports, du skill, des personnalités et des rencontres, de nombreuses animations et lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. Alors récupère ta souris, ton casque et ton câble réseau, branche ton écran et vient imposer la domination de ton équipe dans le Cube.
                 </p>
                 <hr class="a-page__separator" />
                 <div class="a-countdown a-font-bignoodle">
@@ -146,7 +158,11 @@
                     <div class="a-countdown-indicators__indicator a-countdown-indicators__indicator--hours">Heures</div>
                 </div>
                 <h2 class="a-page__title a-page__title--big">9, 10 et 11 Décembre 2016</h2>
-                <button class="a-page__register" data-modal="#modal-login">Connexion</button>
+                <% if (isLoggedIn) { %>
+                    <a href="/dashboard" class="a-button a-page__register">Mon compte</a>
+                <% } else { %>
+                    <button class="a-page__register" data-modal="#modal-login">Connexion</button>
+                <% } %>
                 <hr class="a-page__separator" />
                 <div class="a-category cf">
                     <div class="a-category__icon">
@@ -184,11 +200,11 @@
                                     <div>Une prise par personne. Prenez une multiprise si vous avez besoin de plus d'une alimentation !</div>
                                 </li>
                                 <li>
-                                    <strong>Un câble RJ45 (réseau)</strong>
-                                    <div>Votre câble RJ45 doit être de 5 mètres minimum pour se brancher sur le switch de table. Vous pourrez acheter un câble sur place au prix de 7€ (prix de grande distribution)</div>
+                                    <strong>Un câble réseau (RJ45)</strong>
+                                    <div>Votre câble RJ45 doit être de 5 mètres minimum pour se brancher sur le switch de table. Vous pourrez acheter un câble sur place au prix de 7€ (prix de grande distribution).</div>
                                 </li>
                                 <li>
-                                    <strong>Un casque/Des écouteurs</strong>
+                                    <strong>Un casque / Des écouteurs</strong>
                                 </li>
                                 <li>
                                     <strong>Une pièce d'identité</strong>
@@ -253,7 +269,7 @@
                     </div>
                     <div class="a-category__tabs">
                         <div class="a-category__tabs__tab a-category__tabs__tab--active">
-                            <a href="#">Horaire</a>
+                            <a href="#">Horaires</a>
                         </div>
                         <div class="a-category__tabs__tab">
                             <a href="#">Tarif</a>
@@ -331,9 +347,9 @@
                 <div class="a-partners cf">
                     <h2 id="a-anchor--partners" class="a-page__title a-page__title--big">Partenaires</h2>
                     <div class="a-partners__images">
-                        <div class="a-partners__images__partner">
-    <img src="/img/utt.png" height="100" width="282" />
-</div>
+                        <!--<div class="a-partners__images__partner">
+                            <img src="/img/utt.png" height="100" width="282" />
+                        </div>-->
                         <div class="a-partners__images__partner">
                             <img src="/img/troyesExpoCube.png" height="100" width="100" />
                         </div>
@@ -349,7 +365,7 @@
                 <div class="a-festival cf">
                     <h2 id="a-anchor--festival" class="a-page__title a-page__title--big">Festival</h2>
                     <p class="a-page__text">
-                        C’est dans le Cube, salle homologuée, que le Parc des Expositions de Troyes accueille l’UA. En complément de cette belle initiative étudiante, le Parc des Expositions consacre 4 000m² de superficie à la seconde édition du Festival des Jeux, rendez-vous unique dans l’Aube. Le Festival des Jeux est un événement intergénérationnel qui répond à une demande du public aubois de découvrir, jouer, partager et se rassembler autour de nombreux univers : jeux vidéo, jeux de rôles, jeux de plateau, jeux de figurines, jeux de société, cosplays et bien d’autres encore.
+                        C’est dans le Cube, salle homologuée, que le Parc des Expositions de Troyes accueille l’UA. En complément de cette belle initiative étudiante, le Parc des Expositions consacre 4 000 m² de superficie à la seconde édition du Festival des Jeux, rendez-vous unique dans l’Aube. Le Festival des Jeux est un événement intergénérationnel qui répond à une demande du public aubois de découvrir, jouer, partager et se rassembler autour de nombreux univers : jeux vidéo, jeux de rôles, jeux de plateau, jeux de figurines, jeux de société, cosplays et bien d’autres encore.
                     </p>
                     <div class="a-festival__images">
                         <div class="a-festival__images__image">
@@ -422,5 +438,7 @@
 
         <script async src="bundle.js"></script>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="/fonts/big_noodle_titling.css">
+        <link rel="stylesheet" href="/fonts/muli-regular.css">
     </body>
 </html>

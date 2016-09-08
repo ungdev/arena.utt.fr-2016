@@ -1,4 +1,5 @@
 @import 'normalize.css/normalize';
+@import 'humane-js/themes/flatty';
 
 @import 'app';
 @import 'page';
@@ -8,6 +9,4 @@
 @import 'intro';
 @import 'footer';
 @import 'modal';
-
-@import '../fonts/big_noodle_titling.css';
-@import '../fonts/muli-regular.css';
+@import 'dashboard';
