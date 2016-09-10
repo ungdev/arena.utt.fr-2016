@@ -1,9 +1,11 @@
-const LocalStrategy = require('passport-local').Strategy;
-const { User }      = require('./server.db');
+const LocalStrategy             = require('passport-local').Strategy;
+const { User, Team, Spotlight } = require('./server.db');
 
 module.exports = new LocalStrategy({ usernameField: 'name' }, (name, password, done) => {
     User
-        .findOne({ where: { $or: [ { name }, { email: name } ] } })
+        .findOne({ where: { $or: [ { name }, { email: name } ] }, include: [
+            { model: Team, include: [ User, Spotlight ] }
+        ] })
         .then(user => {
             if (!user) {
                 console.log('user', name, 'does not exists')
@@ -28,3 +30,5 @@ module.exports = new LocalStrategy({ usernameField: 'name' }, (name, password, d
             return done(err, false)
         });
 });
+
+module.exports.isAuth = req => req.session && req.session.hasOwnProperty('passport') && req.session.passport.hasOwnProperty('user');

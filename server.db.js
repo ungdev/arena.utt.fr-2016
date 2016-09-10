@@ -12,6 +12,7 @@ const User = sequelize.define('user', {
     email        : { type: Sequelize.STRING, validate: { isEmail: true }, unique: true },
     password     : Sequelize.STRING,
     paid         : { type: Sequelize.BOOLEAN, defaultValue: false },
+    accepted     : { type: Sequelize.BOOLEAN, defaultValue: false },
     shirt        : { type: Sequelize.ENUM('none', 'XS', 'S', 'M', 'L', 'XL'), defaultValue: 'none' },
     registerToken: { type: Sequelize.UUID, unique: true, defaultValue: Sequelize.UUIDV4 }
 }, {
@@ -28,4 +29,21 @@ const User = sequelize.define('user', {
     }
 });
 
-module.exports = { sequelize, User };
+const Team = sequelize.define('team', {
+    name      : { type: Sequelize.STRING, unique: true },
+    capitainId: { type: Sequelize.INTEGER },
+});
+
+const Spotlight = sequelize.define('spotlight', {
+    name     : { type: Sequelize.STRING, unique: true },
+    max      : { type: Sequelize.INTEGER },
+    maxInTeam: { type: Sequelize.INTEGER, defaultValue: 5 }
+})
+
+User.belongsTo(Team);
+Team.hasMany(User);
+
+Team.belongsTo(Spotlight);
+Spotlight.hasMany(Team);
+
+module.exports = { sequelize, User, Team, Spotlight };

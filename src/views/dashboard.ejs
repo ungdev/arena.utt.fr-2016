@@ -62,65 +62,89 @@
                 <p>
                     Les spotlights sont des tournois commentés, streamés, et les équipes finalistes remportent des lots. Tous vos sens devront être affutés pour pouvoir survivre à une journée entière de compétition&nbsp;!
                 </p>
-                <div class="a-dashboard__teams">
-                    <div>
-                        <h2>Créez votre équipe</h2>
-                        <form method="post" action="/createTeam">
-                            <div class="a-dashboard__input">
-                                <input type="text" placeholder="Nom de l'équipe" name="createTeamName" id="createTeamName"/>
-                            </div>
-                            <div class="a-dashboard__input">
-                                <select name="createTeamSpotlight" id="createTeamSpotlight">
-                                    <option value="" disabled selected>Spotlight</option>
-                                    <option value="lol">League of Legends</option>
-                                    <option value="csgo">Counter-Strike: Global Offensive</option>
-                                    <option value="overwatch">Overwatch</option>
-                                </select>
-                            </div>
-                            <div class="a-dashboard__input">
-                                <input type="submit" class="a-font-bignoodle" value="Créer">
-                            </div>
-                        </form>
+                <% if (!user.team) { %>
+                    <div class="a-dashboard__teams">
+                        <div>
+                            <h2>Créez votre équipe</h2>
+                            <form method="post" action="/createTeam">
+                                <div class="a-dashboard__input">
+                                    <input type="text" placeholder="Nom de l'équipe" name="createTeamName" id="createTeamName"/>
+                                </div>
+                                <div class="a-dashboard__input">
+                                    <select name="createTeamSpotlight" id="createTeamSpotlight">
+                                        <option value="" disabled selected>Spotlight</option>
+                                        <option value="1">League of Legends</option>
+                                        <option value="2">Counter-Strike: Global Offensive</option>
+                                        <option value="3">Overwatch</option>
+                                    </select>
+                                </div>
+                                <div class="a-dashboard__input">
+                                    <input type="submit" class="a-font-bignoodle" value="Créer">
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            <h2>Rejoignez une équipe</h2>
+                            <form method="post" action="/joinTeam">
+                                <div class="a-dashboard__input">
+                                    <input type="text" name="joinTeamName" id="joinTeamName">
+                                </div>
+                                <div class="a-dashboard__input">
+                                    <input type="submit" class="a-font-bignoodle" value="Rejoindre">
+                                </div>
+                            </form>
+                        </div>
                     </div>
+                <% } else { %>
                     <div>
-                        <h2>Rejoignez une équipe</h2>
-                        <form method="post" action="/joinTeam">
-                            <div class="a-dashboard__input">
-                                <input type="text" name="joinTeamName" id="joinTeamName">
-                            </div>
-                            <div class="a-dashboard__input">
-                                <input type="submit" class="a-font-bignoodle" value="Rejoindre">
-                            </div>
-                        </form>
+                        <table width="100%">
+                            <thead>
+                                <th>Membre</th>
+                                <th>Status</th>
+                            </thead>
+                            <tbody>
+                                <% for (let member of user.team.users) { %>
+                                    <tr>
+                                        <td>
+                                            <%= member.name %>
+                                            <% if (user.team.capitainId === member.id) { %>
+                                                &#9812;
+                                            <% } %>
+                                        </td>
+                                        <% if (member.accepted && member.paid) { %>
+                                            <td>Accepté, payé &#10004;</td>
+                                        <% } else if (member.accepted && !member.paid) { %>
+                                            <td>Accepté, non payé &#9888;</td>
+                                        <% } else if (!member.accepted && member.paid) { %>
+                                            <td>
+                                                Payé &#10004;
+                                                <% if (user.team.capitainId === user.id) { %>
+                                                    &nbsp;&nbsp;<button class="a-font-bignoodle" data-allow="<%= member.id %>">Accepter</button>
+                                                    &nbsp;&nbsp;<button class="a-font-bignoodle" data-deny="<%= member.id %>">Refuser</button>
+                                                <% } else { %>
+                                                    , non accepté
+                                                <% } %>
+                                            </td>
+                                        <% } else if (!member.accepted && !member.paid) { %>
+                                            <td>
+                                                Non payé &#9888;
+                                                <% if (user.team.capitainId === user.id) { %>
+                                                    &nbsp;&nbsp;<button class="a-font-bignoodle" data-allow="<%= member.id %>">Accepter</button>
+                                                    &nbsp;&nbsp;<button class="a-font-bignoodle" data-deny="<%= member.id %>">Refuser</button>
+                                                <% } else { %>
+                                                    , non accepté
+                                                <% } %>
+                                            </td>
+                                        <% } %>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div>
-                    <table width="100%">
-                        <thead>
-                            <th>Membre</th>
-                            <th>Status</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Membre 1</td>
-                                <td>Accepté, non payé &#9888;</td>
-                            </tr>
-                            <tr>
-                                <td>Membre 1</td>
-                                <td>Payé &#10004;</td>
-                            </tr>
-                            <tr>
-                                <td>Membre 2</td>
-                                <td>
-                                    <button class="a-font-bignoodle">Accepter</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="a-dashboard__payment">
-                    <strong>Tous les membres</strong> de l'équipe doivent avoir payé leur place pour valider l'inscription au spotlight.
-                </div>
+                    <div class="a-dashboard__payment">
+                        <strong>Tous les membres</strong> de l'équipe doivent avoir payé leur place pour valider l'inscription au spotlight.
+                    </div>
+                <% } %>
                 <br/>
                 <div class="a-spotlights">
                     <div class="a-spotlights__spotlight a-spotlights__spotlight--lol a-font-bignoodle">

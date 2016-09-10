@@ -42,7 +42,7 @@ module.exports = function (app) {
 
                 req.body.password = hash;
 
-                const user = User
+                User
                     .build(req.body)
                     .save()
                     .then(() => res.status(200).end())

@@ -8,9 +8,10 @@ const session       = require('express-session');
 const compression   = require('compression');
 const helmet        = require('helmet');
 const transporter   = require('nodemailer').createTransport('SMTP', config.mail);
+const { isAuth }    = require('./server.passport');
 
 // Database connection
-const { sequelize, User } = require('./server.db');
+const { sequelize, User, Team, Spotlight } = require('./server.db');
 
 // Auth strategy
 passport.use(require('./server.passport'));
@@ -32,9 +33,9 @@ app.use(passport.session());
 app.set('view engine', 'ejs');
 app.set('views', process.cwd() + '/src/views');
 
-const isAuth = req => req.session && req.session.hasOwnProperty('passport') && req.session.passport.hasOwnProperty('user');
 
 require('./server.user')(app);
+require('./server.teams')(app);
 
 app.get('/pass', (req, res) => {
     if (isAuth(req)) {
@@ -48,7 +49,18 @@ app.get(
     '/dashboard',
     (req, res) => {
         if (isAuth(req)) {
-            res.render('dashboard');
+            User
+                .findById(req.session.passport.user.id, {
+                    include: [ { model: Team, include: [ User ] } ]
+                })
+                .then(user => {
+                    console.log(user.toJSON());
+                    res.render('dashboard', { user: user.toJSON() });
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).end();
+                });
         } else {
             res.redirect('/');
         }
@@ -67,7 +79,13 @@ app.get(/\/(index.html)?$/, (req, res) => {
 app.use(serveStatic('public/'));
 
 sequelize
-    .sync({ force: true })
+    .sync()
+    .then(() => {
+        return Spotlight
+            .findOrCreate({ where: { name: 'lol', max: 16, maxInTeam: 5 } })
+            .then(() => Spotlight.findOrCreate({ where: { name: 'csgo', max: 8, maxInTeam: 5 } }))
+            .then(() => Spotlight.findOrCreate({ where: { name: 'overwatch', max: 16, maxInTeam: 5 } }))
+    })
     .then(() => {
         app.listen(8080, () => {
             console.log('Listenning on port 8080');
