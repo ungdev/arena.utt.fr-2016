@@ -9,7 +9,7 @@ const activatePanel = function ($sourceTab) {
 
     const $activeTab = $tabContainer.querySelector('.a-category__tabs__tab--active');
     const index      = Array.from($tabContainer.children).indexOf($activeTab);
-    const $newTab = $panelContainer.children[index];
+    const $newTab    = $panelContainer.children[index];
     $newTab.classList.add('a-category__panels__panel--active');
 };
 

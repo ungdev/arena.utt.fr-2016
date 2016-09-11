@@ -22,7 +22,6 @@ const animationend = (() => {
 })();
 
 const once = (elem, name, listener) => {
-    console.log('adding listener:', name, 'on', elem);
     const onceListener = () => {
         elem.removeEventListener(name, onceListener);
 

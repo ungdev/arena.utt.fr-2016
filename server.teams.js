@@ -71,8 +71,6 @@ module.exports = app => {
             .then(joinTeam => {
                 team = joinTeam;
 
-                console.log('LEN', team.users.length);
-                console.log('MAX', team.spotlight.maxInTeam);
                 if (team.users.length >= team.spotlight.maxInTeam) {
                     throw 'full';
                 }

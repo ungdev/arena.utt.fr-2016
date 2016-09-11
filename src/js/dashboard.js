@@ -1,5 +1,5 @@
 const axios  = require('axios');
-const Humane = require('humane-js');
+const logger = require('./log.js');
 
 const $anchors             = Array.from(document.querySelectorAll('.a-dashboard [data-scroll]'));
 const $registerForm        = document.querySelector('form[action="/createTeam"]');
@@ -39,19 +39,19 @@ if ($registerForm) {
             .then(() => location.reload())
             .catch(err => {
                 if (err.response.data.error === 'spotlight') {
-                    Humane.log('Veuillez choisir un spotlight');
+                    logger.log('Veuillez choisir un spotlight');
                 }
 
                 if (err.response.data.error === 'teamlen') {
-                    Humane.log('Nom d\'équipe trop court (6 caractères minimum)');
+                    logger.log('Nom d\'équipe trop court (6 caractères minimum)');
                 }
 
                 if (err.response.data.error === 'alreadyInteam') {
-                    Humane.log('Vous êtes déjà dans une équipe');
+                    logger.log('Vous êtes déjà dans une équipe');
                 }
 
                 if (err.response.data.error === 'duplicate') {
-                    Humane.log('Nom d\'équipe déjà existant');
+                    logger.log('Nom d\'équipe déjà existant');
                 }
             });
     });
@@ -68,7 +68,7 @@ if ($joinForm) {
             .then(() => location.reload())
             .catch(err => {
                 if (err.response.data.error === 'full') {
-                    Humane.log('Équipe pleine');
+                    logger.log('Équipe pleine');
                 }
             });
     });
@@ -86,11 +86,11 @@ if ($allowers.length > 0) {
                 .then(() => location.reload())
                 .catch(err => {
                     if (err.response.data.error === 'team') {
-                        Humane.log('Vous devez être capitaine d\'équipe');
+                        logger.log('Vous devez être capitaine d\'équipe');
                     }
 
                     if (err.response.data.error === 'id') {
-                        Humane.log('Joueur invalide');
+                        logger.log('Joueur invalide');
                     }
                 });
         });
@@ -109,11 +109,11 @@ if ($denyers.length > 0) {
                 .then(() => location.reload())
                 .catch(err => {
                     if (err.response.data.error === 'team') {
-                        Humane.log('Vous devez être capitaine d\'équipe');
+                        logger.log('Vous devez être capitaine d\'équipe');
                     }
 
                     if (err.response.data.error === 'id') {
-                        Humane.log('Joueur invalide');
+                        logger.log('Joueur invalide');
                     }
                 });
         });

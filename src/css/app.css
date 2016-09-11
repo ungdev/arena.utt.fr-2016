@@ -163,6 +163,21 @@ a {
     text-decoration: none;
 }
 
+.humane {
+    background-color: var(--accent);
+    color: #000;
+    font-size: 20px;
+    border-radius: 0;
+    box-shadow: 5px 5px 0 var(--mainColor);
+    font-family: var(--fontFamily);
+    opacity: 0.9;
+    font-weight: bold;
+
+    &.humane-animate {
+        transform: translateY(5px);
+    }
+}
+
 .cf:before,
 .cf:after {
     content: " ";

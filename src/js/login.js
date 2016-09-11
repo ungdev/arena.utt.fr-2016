@@ -1,4 +1,4 @@
-const Humane = require('humane-js');
+const logger = require('./log.js');
 const axios  = require('axios');
 
 const $modal = document.getElementById('modal-login');
@@ -19,20 +19,19 @@ const $loginPassword = document.getElementById('loginPassword');
 if ($registerForm) {
     $registerForm.addEventListener('submit', e => {
         e.preventDefault();
-        console.log('submit');
 
         if ($registerPassword1.value !== $registerPassword2.value) {
-            Humane.log('Les mots de passe ne correspondent pas');
+            logger.log('Les mots de passe ne correspondent pas');
             return;
         }
 
         if (!$registerRules.checked) {
-            Humane.log('Veuillez accepter les règles du tournoi');
+            logger.log('Veuillez accepter les règles du tournoi');
             return;
         }
 
         if (!$registerConditions.checked) {
-            Humane.log('Veuillez accepter les conditions générales');
+            logger.log('Veuillez accepter les conditions générales');
             return;
         }
 
@@ -43,33 +42,33 @@ if ($registerForm) {
                 email   : $registerMail.value
             })
             .then(res => {
-                Humane.log('Compte créé avec succès. Vous pouvez vous connecter.');
+                logger.log('Compte créé avec succès. Vous pouvez vous connecter.');
                 $registerForm.reset();
                 $modal.classList.add('a-modal--switched');
                 $loginNickname.focus();
             })
             .catch(err => {
                 if (err.response.data.error === 'pwdlen') {
-                    return Humane.log('Mot de passe trop court (6 caractères minimum)');
+                    return logger.log('Mot de passe trop court (6 caractères minimum)');
                 }
 
                 if (err.response.data.error === 'namelen') {
-                    return Humane.log('Nom d\'utilisateur trop court (6 caractères minimum)');
+                    return logger.log('Nom d\'utilisateur trop court (6 caractères minimum)');
                 }
 
                 if (err.response.data.error === 'mail') {
-                    return Humane.log('E-Mail invalide');
+                    return logger.log('E-Mail invalide');
                 }
 
                 if (err.response.data.error === 'duplicate') {
                     if (err.response.data.field === 'name') {
-                        return Humane.log('Nom d\'utilisateur déjà existant');
+                        return logger.log('Nom d\'utilisateur déjà existant');
                     } else if (err.response.data.field === 'email') {
-                        return Humane.log('E-mail déjà existant');
+                        return logger.log('E-mail déjà existant');
                     }
                 }
 
-                Humane.log('Impossible de créer le compte');
+                logger.log('Impossible de créer le compte');
             });
     });
 
@@ -85,8 +84,7 @@ if ($registerForm) {
                 location.href = '/dashboard';
             })
             .catch(err => {
-                console.log('XX');
-                Humane.log('Pseudo ou mot de passe invalide');
+                logger.log('Pseudo ou mot de passe invalide');
             });
     });
 }
