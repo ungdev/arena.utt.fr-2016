@@ -1,5 +1,6 @@
 const { isAuth }                = require('./server.passport');
 const { User, Team, Spotlight } = require('./server.db');
+const isSpotlightFull           = require('./server.full');
 
 module.exports = app => {
     app.post('/createTeam', (req, res) => {
@@ -22,13 +23,20 @@ module.exports = app => {
         let team;
         let capitain;
 
-        Team
-            .build({
-                name       : req.body.name,
-                capitainId : req.session.passport.user.id,
-                spotlightId: req.body.spotlight
+        isSpotlightFull(req.body.spotlight)
+            .then(isFull => {
+                if (isFull) {
+                    throw 'full';
+                }
+
+                return Team
+                    .build({
+                        name       : req.body.name,
+                        capitainId : req.session.passport.user.id,
+                        spotlightId: req.body.spotlight
+                    })
+                    .save();
             })
-            .save()
             .then(createdTeam => {
                 team = createdTeam;
                 return User.findById(req.session.passport.user.id)
@@ -43,8 +51,12 @@ module.exports = app => {
             })
             .then(() => res.status(200).end())
             .catch(err => {
+                if (err === 'full') {
+                    return res.status(400).json({ error: 'full' })
+                }
+
                 if (err.name === 'SequelizeUniqueConstraintError') {
-                    return res.status(400).json({ err: 'duplicate' });
+                    return res.status(400).json({ error: 'duplicate' });
                 }
 
                 return res.status(500).end();

@@ -8,7 +8,7 @@ module.exports = new LocalStrategy({ usernameField: 'name' }, (name, password, d
         ] })
         .then(user => {
             if (!user) {
-                console.log('user', name, 'does not exists')
+                console.warn('user', name, 'does not exists')
                 return done(null, false);
             }
 
@@ -16,7 +16,7 @@ module.exports = new LocalStrategy({ usernameField: 'name' }, (name, password, d
                 .validatePassword(password)
                 .then(passwordOk => {
                     if (!passwordOk) {
-                        console.log('user', name, 'doesnt have password to', password);
+                        console.warn('user', name, 'doesnt have password to', password);
                         return done(null, false);
                     }
 

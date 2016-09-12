@@ -37,7 +37,8 @@ const Team = sequelize.define('team', {
 const Spotlight = sequelize.define('spotlight', {
     name     : { type: Sequelize.STRING, unique: true },
     max      : { type: Sequelize.INTEGER },
-    maxInTeam: { type: Sequelize.INTEGER, defaultValue: 5 }
+    maxInTeam: { type: Sequelize.INTEGER, defaultValue: 5 },
+    minInTeam: { type: Sequelize.INTEGER, defaultValue: 5 }
 })
 
 User.belongsTo(Team);

@@ -73,9 +73,13 @@
                                 <div class="a-dashboard__input">
                                     <select name="createTeamSpotlight" id="createTeamSpotlight">
                                         <option value="" disabled selected>Spotlight</option>
-                                        <option value="1">League of Legends</option>
-                                        <option value="2">Counter-Strike: Global Offensive</option>
-                                        <option value="3">Overwatch</option>
+                                        <% for (let spotlight of spotlights) { %>
+                                            <% if (spotlight.isFull) { %>
+                                                <option value="<%= spotlight.id %>" disabled><%= spotlight.name %> (plein)</option>
+                                            <% } else { %>
+                                                <option value="<%= spotlight.id %>"><%= spotlight.name %></option>
+                                            <% } %>
+                                        <% } %>
                                     </select>
                                 </div>
                                 <div class="a-dashboard__input">

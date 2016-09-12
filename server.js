@@ -1,14 +1,15 @@
-const config        = require('./config.json');
-const passport      = require('passport');
-const express       = require('express');
-const cookieParser  = require('cookie-parser');
-const bodyParser    = require('body-parser');
-const serveStatic   = require('serve-static');
-const session       = require('express-session');
-const compression   = require('compression');
-const helmet        = require('helmet');
-const transporter   = require('nodemailer').createTransport('SMTP', config.mail);
-const { isAuth }    = require('./server.passport');
+const config          = require('./config.json');
+const passport        = require('passport');
+const express         = require('express');
+const cookieParser    = require('cookie-parser');
+const bodyParser      = require('body-parser');
+const serveStatic     = require('serve-static');
+const session         = require('express-session');
+const compression     = require('compression');
+const helmet          = require('helmet');
+const transporter     = require('nodemailer').createTransport('SMTP', config.mail);
+const { isAuth }      = require('./server.passport');
+const isSpotlightFull = require('./server.full');
 
 // Database connection
 const { sequelize, User, Team, Spotlight } = require('./server.db');
@@ -49,16 +50,35 @@ app.get(
     '/dashboard',
     (req, res) => {
         if (isAuth(req)) {
+            let user;
+            let spotlights;
+
             User
                 .findById(req.session.passport.user.id, {
                     include: [ { model: Team, include: [ User ] } ]
                 })
-                .then(user => {
-                    console.log(user.toJSON());
-                    res.render('dashboard', { user: user.toJSON() });
+                .then(user_ => {
+                    user = user_.toJSON();
+
+                    return Spotlight.findAll({
+                        include: [ { model: Team, include: [ User ] } ]
+                    });
+                })
+                .then(spotlights_ => {
+                    spotlights = spotlights_.map(spotlight => spotlight.toJSON());
+
+                    return Promise.all(
+                        spotlights.map(spotlight => isSpotlightFull.fromModel(spotlight))
+                    );
+                })
+                .then(areSpotlightFull => {
+                    spotlights.forEach((spotlight, i) => {
+                        spotlight.isFull = areSpotlightFull[i];
+                    });
+
+                    res.render('dashboard', { user, spotlights });
                 })
                 .catch(err => {
-                    console.log(err);
                     res.status(500).end();
                 });
         } else {
@@ -82,9 +102,9 @@ sequelize
     .sync()
     .then(() => {
         return Spotlight
-            .findOrCreate({ where: { name: 'lol', max: 16, maxInTeam: 5 } })
-            .then(() => Spotlight.findOrCreate({ where: { name: 'csgo', max: 8, maxInTeam: 5 } }))
-            .then(() => Spotlight.findOrCreate({ where: { name: 'overwatch', max: 16, maxInTeam: 5 } }))
+            .findOrCreate({ where: { name: 'League of Legends', max: 16, maxInTeam: 5, minInTeam: 5 } })
+            .then(() => Spotlight.findOrCreate({ where: { name: 'Counter-Strike: Global Offensive', max: 8, maxInTeam: 6, minInTeam: 6 } }))
+            .then(() => Spotlight.findOrCreate({ where: { name: 'Overwatch', max: 16, maxInTeam: 5, minInTeam: 5 } }))
     })
     .then(() => {
         app.listen(8080, () => {

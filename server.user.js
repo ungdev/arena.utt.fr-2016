@@ -47,7 +47,6 @@ module.exports = function (app) {
                     .save()
                     .then(() => res.status(200).end())
                     .catch(err => {
-                        console.log(err);
                         if (err.name === 'SequelizeValidationError') {
                             return res.status(400).json({ error: 'mail' }).end();
                         }
@@ -57,6 +56,7 @@ module.exports = function (app) {
                             return res.status(400).json({ error: 'duplicate', field }).end();
                         }
 
+                        console.error(err);
                         return res.status(500).end();
                     });
             });

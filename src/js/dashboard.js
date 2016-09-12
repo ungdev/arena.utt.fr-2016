@@ -53,6 +53,10 @@ if ($registerForm) {
                 if (err.response.data.error === 'duplicate') {
                     logger.log('Nom d\'équipe déjà existant');
                 }
+
+                if (err.response.data.error === 'full') {
+                    logger.log('Spotlight plein');
+                }
             });
     });
 }
