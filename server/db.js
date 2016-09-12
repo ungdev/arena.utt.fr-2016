@@ -1,10 +1,14 @@
-const config    = require('./config.json');
+const logger    = require('./log');
+const config    = require('../config.json');
 const bcrypt    = require('bcrypt-nodejs')
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(config.db.name, config.db.user, config.db.pwd, {
     host   : config.db.host,
-    dialect: config.db.dialect
+    dialect: config.db.dialect,
+    logging: query => {
+        logger.debug(query);
+    }
 });
 
 const User = sequelize.define('user', {

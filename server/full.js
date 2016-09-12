@@ -1,4 +1,5 @@
-const { Team, Spotlight, User } = require('./server.db');
+const logger                    = require('./log');
+const { Team, Spotlight, User } = require('./db');
 
 const isTeamFull = (spotlight, team) => {
     const users = team.users.filter(user => user.accepted).length;
@@ -23,7 +24,10 @@ module.exports = id => {
         })
         .then(spotlight => {
             return isSpotlightFull(spotlight.toJSON());
-        });
+        })
+        .catch(err => {
+            logger.error(err);
+        })
 };
 
 module.exports.fromModel  = isSpotlightFull;

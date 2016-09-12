@@ -1,6 +1,7 @@
-const { isAuth }                = require('./server.passport');
-const { User, Team, Spotlight } = require('./server.db');
-const isSpotlightFull           = require('./server.full');
+const logger                    = require('./log');
+const isSpotlightFull           = require('./full');
+const { isAuth }                = require('./passport');
+const { User, Team, Spotlight } = require('./db');
 
 module.exports = app => {
     app.post('/createTeam', (req, res) => {
@@ -96,7 +97,7 @@ module.exports = app => {
                     return res.status(400).json({ error: 'full' }).end();
                 }
 
-                console.error(err);
+                logger.error(err);
                 return res.status(500).end();
             });
     });
@@ -125,7 +126,7 @@ module.exports = app => {
             })
             .then(() => res.status(200).end())
             .catch(err => {
-                console.error(err);
+                logger.error(err);
 
                 return res.status(500).end();
             });
@@ -152,7 +153,7 @@ module.exports = app => {
             })
             .then(() => res.status(200).end())
             .catch(err => {
-                console.error(err);
+                logger.error(err);
                 return res.status(500).end();
             });
     });

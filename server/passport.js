@@ -1,5 +1,6 @@
 const LocalStrategy             = require('passport-local').Strategy;
-const { User, Team, Spotlight } = require('./server.db');
+const logger                    = require('./log');
+const { User, Team, Spotlight } = require('./db');
 
 module.exports = new LocalStrategy({ usernameField: 'name' }, (name, password, done) => {
     User
@@ -8,7 +9,7 @@ module.exports = new LocalStrategy({ usernameField: 'name' }, (name, password, d
         ] })
         .then(user => {
             if (!user) {
-                console.warn('user', name, 'does not exists')
+                logger.warn('user', name, 'does not exists')
                 return done(null, false);
             }
 
@@ -16,7 +17,7 @@ module.exports = new LocalStrategy({ usernameField: 'name' }, (name, password, d
                 .validatePassword(password)
                 .then(passwordOk => {
                     if (!passwordOk) {
-                        console.warn('user', name, 'doesnt have password to', password);
+                        logger.warn('user', name, 'doesnt have password to', password);
                         return done(null, false);
                     }
 

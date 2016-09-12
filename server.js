@@ -8,14 +8,15 @@ const session         = require('express-session');
 const compression     = require('compression');
 const helmet          = require('helmet');
 const transporter     = require('nodemailer').createTransport('SMTP', config.mail);
-const { isAuth }      = require('./server.passport');
-const isSpotlightFull = require('./server.full');
+const logger          = require('./server/log');
+const { isAuth }      = require('./server/passport');
+const isSpotlightFull = require('./server/full');
 
 // Database connection
-const { sequelize, User, Team, Spotlight } = require('./server.db');
+const { sequelize, User, Team, Spotlight } = require('./server/db');
 
 // Auth strategy
-passport.use(require('./server.passport'));
+passport.use(require('./server/passport'));
 
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
@@ -35,8 +36,8 @@ app.set('view engine', 'ejs');
 app.set('views', process.cwd() + '/src/views');
 
 
-require('./server.user')(app);
-require('./server.teams')(app);
+require('./server/user')(app);
+require('./server/teams')(app);
 
 app.get('/pass', (req, res) => {
     if (isAuth(req)) {
@@ -108,6 +109,6 @@ sequelize
     })
     .then(() => {
         app.listen(8080, () => {
-            console.log('Listenning on port 8080');
+            logger.info('Listenning on port 8080');
         });
     });

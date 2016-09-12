@@ -1,6 +1,7 @@
 const bcrypt   = require('bcrypt-nodejs');
 const passport = require('passport');
-const { User } = require('./server.db');
+const logger   = require('./log');
+const { User } = require('./db');
 
 module.exports = function (app) {
     app.post(
@@ -22,13 +23,13 @@ module.exports = function (app) {
     app.post('/register', (req, res) => {
         bcrypt.genSalt(12, (err, salt) => {
             if (err) {
-                console.error(err);
+                logger.error(err);
                 return res.status(500).end();
             }
 
             bcrypt.hash(req.body.password, salt, null, (err, hash) => {
                 if (err) {
-                    console.error(err);
+                    logger.error(err);
                     return res.status(500).end();
                 }
 
@@ -56,7 +57,7 @@ module.exports = function (app) {
                             return res.status(400).json({ error: 'duplicate', field }).end();
                         }
 
-                        console.error(err);
+                        logger.error(err);
                         return res.status(500).end();
                     });
             });
