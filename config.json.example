@@ -16,5 +16,10 @@
             "user": "foo",
             "pass": "bar"
         }
+    },
+    "log": {
+        "console": "debug",
+        "file": "debug",
+        "maxsize": 10000000
     }
 }
