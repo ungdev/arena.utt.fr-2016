@@ -100,12 +100,12 @@ app.get(/\/(index.html)?$/, (req, res) => {
 app.use(serveStatic('public/'));
 
 sequelize
-    .sync()
+    .sync({ force: true })
     .then(() => {
         return Spotlight
-            .findOrCreate({ where: { name: 'League of Legends', max: 16, maxInTeam: 5, minInTeam: 5 } })
-            .then(() => Spotlight.findOrCreate({ where: { name: 'Counter-Strike: Global Offensive', max: 8, maxInTeam: 6, minInTeam: 6 } }))
-            .then(() => Spotlight.findOrCreate({ where: { name: 'Overwatch', max: 16, maxInTeam: 5, minInTeam: 5 } }))
+            .findOrCreate({ where: { name: 'League of Legends', max: 24, maxInTeam: 5, minInTeam: 5 } })
+            .then(() => Spotlight.findOrCreate({ where: { name: 'Hearthstone', max: 16, maxInTeam: 1, minInTeam: 1 } }))
+            .then(() => Spotlight.findOrCreate({ where: { name: 'Overwatch', max: 24, maxInTeam: 5, minInTeam: 5 } }))
     })
     .then(() => {
         app.listen(8080, () => {

@@ -63,9 +63,33 @@ body {
     overflow-x: hidden;
 }
 
-@-moz-document url-prefix() {
+.a--firefox {
     h1, h2, h3, .a-font-bignoodle {
         letter-spacing: 0 !important;
+    }
+
+    #modal-login {
+        height: 368px;
+
+        &.a-modal--switched {
+            height: 225px;
+
+            .a-modal__register {
+                top: -360px;
+            }
+
+            .a-modal__login {
+                top: 0;
+            }
+        }
+
+        .a-modal__register {
+            top: 10px;
+        }
+
+        .a-modal__login {
+            top: calc(100% + 10px);
+        }
     }
 }
 
@@ -119,6 +143,10 @@ input[type="text"], input[type="password"], input[type="email"] {
     border: 0;
     font-size: 1rem;
     padding: 5px 10px;
+
+    &[disabled] {
+        background-color: #bfb240;
+    }
 
     &::-webkit-input-placeholder {
         color: #000;

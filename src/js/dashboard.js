@@ -2,6 +2,7 @@ const axios  = require('axios');
 const logger = require('./log.js');
 
 const $anchors             = Array.from(document.querySelectorAll('.a-dashboard [data-scroll]'));
+const $soloTeams           = Array.from(document.querySelectorAll('.a-dashboard [data-solo]'));
 const $registerForm        = document.querySelector('form[action="/createTeam"]');
 const $createTeamName      = document.getElementById('createTeamName');
 const $createTeamSpotlight = document.getElementById('createTeamSpotlight');
@@ -11,6 +12,21 @@ const $joinTeamName = document.getElementById('joinTeamName');
 
 const $allowers = Array.from(document.querySelectorAll('.a-dashboard [data-allow]'));
 const $denyers  = Array.from(document.querySelectorAll('.a-dashboard [data-deny]'));
+
+if ($soloTeams.length > 0) {
+    $soloTeams.forEach($soloTeam => {
+        const value = $soloTeam.value;
+
+        $soloTeam.parentElement.addEventListener('change', e => {
+            if ($soloTeam.parentElement.value === value) {
+                document.getElementById('createTeamName').value    = $soloTeam.getAttribute('data-solo');
+                document.getElementById('createTeamName').disabled = 'disabled';
+            } else {
+                document.getElementById('createTeamName').removeAttribute('disabled');
+            }
+        });
+    });
+}
 
 if ($anchors.length > 0) {
     $anchors.forEach($anchor => {

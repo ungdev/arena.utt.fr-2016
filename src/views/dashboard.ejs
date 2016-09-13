@@ -77,7 +77,11 @@
                                             <% if (spotlight.isFull) { %>
                                                 <option value="<%= spotlight.id %>" disabled><%= spotlight.name %> (plein)</option>
                                             <% } else { %>
-                                                <option value="<%= spotlight.id %>"><%= spotlight.name %></option>
+                                                <% if (spotlight.maxInTeam === 1) { %>
+                                                    <option value="<%= spotlight.id %>" data-solo="<%= user.name %>"><%= spotlight.name %></option>
+                                                <% } else { %>
+                                                    <option value="<%= spotlight.id %>"><%= spotlight.name %></option>
+                                                <% } %>
                                             <% } %>
                                         <% } %>
                                     </select>
@@ -155,7 +159,7 @@
                     </div>
                     <div class="a-spotlights__spotlight a-spotlights__spotlight--overwatch a-font-bignoodle">
                     </div>
-                    <div class="a-spotlights__spotlight a-spotlights__spotlight--csgo a-font-bignoodle">
+                    <div class="a-spotlights__spotlight a-spotlights__spotlight--hearthstone a-font-bignoodle">
                     </div>
                 </div>
             </div>

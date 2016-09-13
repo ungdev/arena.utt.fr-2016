@@ -8,3 +8,7 @@ require('./modal.js');
 require('./tabs.js');
 require('./login.js');
 require('./dashboard.js');
+
+if (navigator.userAgent.indexOf('Firefox') > -1) {
+    document.body.classList.add('a--firefox');
+}
