@@ -1,5 +1,5 @@
 .a-footer {
-    background-color: var(--dark);
+    background: radial-gradient(ellipse at center, #3d444c 0%, #24282b 97%);
     border-top: 3px solid var(--accent);
     text-align: center;
 
