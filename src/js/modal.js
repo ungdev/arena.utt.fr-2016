@@ -62,10 +62,8 @@ $switchers.forEach($switcher => {
 
         if ($modal.classList.contains('a-modal--switched')) {
             document.getElementById('loginNickname').focus();
-            $modal.style.height = `${loginHeight}px`;
         } else {
             document.getElementById('registerNickname').focus();
-            $modal.style.height = `${registerHeight}px`;
         }
     });
 });

@@ -82,6 +82,21 @@
         <main>
             <div class="a-modal a-modal--hidden" id="modal-login">
                 <a class="a-modal__closer">&#x2715;</a>
+                <div class="a-modal__login">
+                    <h1 class="a-modal__title">Connexion</h1>
+                    <form method="post" action="/login" id="loginForm">
+                        <div class="a-modal__input">
+                            <input type="text" placeholder="Pseudo" id="loginNickname" />
+                        </div>
+                        <div class="a-modal__input">
+                            <input type="password" placeholder="Mot de passe" id="loginPassword" />
+                        </div>
+                        <div class="a-modal__submit">
+                            <input type="submit" class="a-font-bignoodle" value="Connexion" />
+                            <a href="#" class="a-modal__switch">Inscription</a>
+                        </div>
+                    </form>
+                </div>
                 <div class="a-modal__register">
                     <h1 class="a-modal__title">Inscription</h1>
                     <form method="post" action="/register" id="registerForm">
@@ -108,21 +123,6 @@
                         <div class="a-modal__submit">
                             <input type="submit" class="a-font-bignoodle" value="Inscription" />
                             <a href="#" class="a-modal__switch">Connexion</a>
-                        </div>
-                    </form>
-                </div>
-                <div class="a-modal__login">
-                    <h1 class="a-modal__title">Connexion</h1>
-                    <form method="post" action="/login" id="loginForm">
-                        <div class="a-modal__input">
-                            <input type="text" placeholder="Pseudo" id="loginNickname" />
-                        </div>
-                        <div class="a-modal__input">
-                            <input type="password" placeholder="Mot de passe" id="loginPassword" />
-                        </div>
-                        <div class="a-modal__submit">
-                            <input type="submit" class="a-font-bignoodle" value="Connexion" />
-                            <a href="#" class="a-modal__switch">Inscription</a>
                         </div>
                     </form>
                 </div>

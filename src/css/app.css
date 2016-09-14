@@ -69,26 +69,10 @@ body {
     }
 
     #modal-login {
-        height: 368px;
+        height: 240px;
 
         &.a-modal--switched {
-            height: 225px;
-
-            .a-modal__register {
-                top: -360px;
-            }
-
-            .a-modal__login {
-                top: 0;
-            }
-        }
-
-        .a-modal__register {
-            top: 10px;
-        }
-
-        .a-modal__login {
-            top: calc(100% + 10px);
+            height: 375px;
         }
     }
 }

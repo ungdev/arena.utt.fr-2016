@@ -5,13 +5,13 @@
 .a-modal {
     background-color: color(var(--dark) a(80%));
     display: block;
-    height: 338px;
+    height: 210px;
     overflow: hidden;
     padding: 15px .5rem;
     position: absolute;
     right: calc(3.75% - 5px);
     top: 130px;
-    transition: .3s right ease, .3s height ease;
+    transition: .3s right ease, .15s height ease;
     width: 300px;
     z-index: 3;
 
@@ -21,14 +21,14 @@
     }
 
     &.a-modal--switched {
-        height: 210px;
+        height: 340px;
 
         .a-modal__register {
-            top: -335px;
+            display: block;
         }
 
         .a-modal__login {
-            top: 15px;
+            display: none;
         }
     }
 
@@ -91,10 +91,9 @@
     }
 
     .a-modal__register {
+        display: none;
         left: 0;
         position: absolute;
-        top: 15px;
-        transition: .3s top ease;
         width: 100%;
     }
 
@@ -103,7 +102,6 @@
         left: 0;
         position: absolute;
         transition: .3s top ease;
-        top: 100%;
         width: 100%;
     }
 }
