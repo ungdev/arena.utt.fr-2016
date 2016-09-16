@@ -2,7 +2,7 @@ const countdown = require('countdown');
 
 const pad2 = n => (n < 10 ? '0' : '') + n;
 
-const startDate = new Date('2016-11-09T16:00:00+00:00');
+const startDate = new Date('2016-12-09T16:00:00+00:00');
 const diff = countdown(startDate);
 
 const months = pad2(diff.months);
