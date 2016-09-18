@@ -100,7 +100,7 @@ app.get(/\/(index.html)?$/, (req, res) => {
 app.use(serveStatic('public/'));
 
 sequelize
-    .sync({ force: true })
+    .sync({ force: config.db.reset })
     .then(() => {
         return Spotlight
             .findOrCreate({ where: { name: 'League of Legends', max: 24, maxInTeam: 5, minInTeam: 5 } })
