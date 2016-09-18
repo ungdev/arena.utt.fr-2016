@@ -16,8 +16,9 @@ const User = sequelize.define('user', {
     email        : { type: Sequelize.STRING, validate: { isEmail: true }, unique: true },
     password     : Sequelize.STRING,
     paid         : { type: Sequelize.BOOLEAN, defaultValue: false },
-    accepted     : { type: Sequelize.BOOLEAN, defaultValue: false },
     shirt        : { type: Sequelize.ENUM('none', 'XS', 'S', 'M', 'L', 'XL'), defaultValue: 'none' },
+    plusone      : { type: Sequelize.BOOLEAN, defaultValue: false },
+    accepted     : { type: Sequelize.BOOLEAN, defaultValue: false },
     registerToken: { type: Sequelize.UUID, unique: true, defaultValue: Sequelize.UUIDV4 }
 }, {
     instanceMethods: {

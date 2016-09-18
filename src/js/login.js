@@ -44,7 +44,7 @@ if ($registerForm) {
             .then(res => {
                 logger.log('Compte créé avec succès. Vous pouvez vous connecter.');
                 $registerForm.reset();
-                $modal.classList.add('a-modal--switched');
+                $modal.classList.remove('a-modal--switched');
                 $loginNickname.focus();
             })
             .catch(err => {

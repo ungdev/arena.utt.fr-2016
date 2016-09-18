@@ -50,7 +50,7 @@ $modalOpeners.forEach($modalOpener => {
             $modal.classList.remove('a-modal--hidden');
         });
 
-        document.getElementById('registerNickname').focus();
+        document.getElementById('loginNickname').focus();
     }, false);
 });
 
@@ -61,9 +61,9 @@ $switchers.forEach($switcher => {
         $modal.classList.toggle('a-modal--switched');
 
         if ($modal.classList.contains('a-modal--switched')) {
-            document.getElementById('loginNickname').focus();
-        } else {
             document.getElementById('registerNickname').focus();
+        } else {
+            document.getElementById('loginNickname').focus();
         }
     });
 });
