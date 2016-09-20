@@ -31,7 +31,6 @@
 
     .a-page__separator {
         border: none;
-        border-top: 2px solid var(--accent);
         margin: 3rem 0;
     }
 
@@ -92,6 +91,48 @@
             > .a-category__button {
                 font-size: 6rem;
                 padding: 0.5rem 6rem;
+            }
+        }
+    }
+
+    .a-banner {
+        background-size: cover;
+        font-size: 8rem;
+        height: 240px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+
+        > span {
+            bottom: 30px;
+            color: var(--mainColor);
+            text-shadow: 2px 2px 0 var(--accent);
+            left: 50px;
+            position: absolute;
+        }
+
+        &.a-banner--infos {
+            background-image: url(/img/infos.png);
+
+            & + div, & + div + div {
+                margin-top: 300px;
+            }
+        }
+
+        &.a-banner--partners {
+            background-image: url(/img/partners.png);
+
+            & + div {
+                margin-top: 300px;
+            }
+        }
+
+        &.a-banner--festival {
+            background-image: url(/img/festival.png);
+            background-position: center;
+
+            & + p {
+                margin-top: 300px;
             }
         }
     }
@@ -199,10 +240,11 @@
 
 .a-list {
     column-count: 3;
+    column-gap: 60px;
     font-size: 1.1rem;
     list-style: none;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
     padding-left: 0;
     text-align: justify;
 
@@ -369,6 +411,19 @@
         &.a-category__list--two {
             column-count: 1;
         }
+    }
+
+    .a-page--intro .a-banner {
+        font-size: 5rem;
+    }
+
+    .a-page--intro .a-banner > span {
+        left: 30px;
+    }
+
+    .a-list {
+        column-count: 1 !important;
+        margin: 0 15px;
     }
 }
 

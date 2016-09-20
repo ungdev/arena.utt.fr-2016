@@ -56,7 +56,7 @@
 @media (max-width: 850px) {
     .a-hero > .a-hero__content > img {
         width: 400px;
-        height: 350px;
+        height: 400px;
     }
 
     .a-hero > .a-hero__content > .a-hero__content__logo {
@@ -67,7 +67,7 @@
 @media (max-width: 575px) {
     .a-hero > .a-hero__content > img {
         width: 320px;
-        height: 280px;
+        height: 320px;
     }
 
     .a-hero > .a-hero__content > .a-hero__content__logo {
@@ -77,7 +77,7 @@
 
 @media (max-width: 420px) {
     .a-hero > .a-hero__content > img {
-        height: 245px;
+        height: 280px;
         width: 280px;
     }
 
