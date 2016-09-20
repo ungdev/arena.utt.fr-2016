@@ -97,6 +97,7 @@
 
     .a-banner {
         background-size: cover;
+        background-position: center;
         font-size: 8rem;
         height: 240px;
         left: 0;
@@ -129,7 +130,6 @@
 
         &.a-banner--festival {
             background-image: url(/img/festival.png);
-            background-position: center;
 
             & + p {
                 margin-top: 300px;
