@@ -97,7 +97,7 @@
 
     .a-banner {
         background-size: cover;
-        background-position: center;
+        background-position: center bottom;
         font-size: 8rem;
         height: 240px;
         left: 0;
