@@ -1,9 +1,12 @@
 const $items  = Array.from(document.querySelectorAll('.a-item[data-item-toggle]'));
 const $submit = document.querySelector('.a-payment-button');
-const $total  = $submit.querySelector('.a-payment-button__price');
+const $total  = $submit && $submit.querySelector('.a-payment-button__price');
 
 const $sizeResult = document.querySelector('.a-item__selected-size');
 const $sizes      = Array.from(document.querySelectorAll('.a-item__sizes__size'));
+
+const $genderResult = document.querySelector('.a-item__selected-gender');
+const $genders      = Array.from(document.querySelectorAll('.a-item__genders__gender'));
 
 const isInt = n => (n % 1) === 0;
 
@@ -28,15 +31,25 @@ $items.forEach($item => {
 
         // Activate sizes for t-shirt
         const $next = $item.nextElementSibling;
-        if ($next.classList.contains('a-item__sizes')) {
+        if (!$next) {
+            return;
+        }
+
+        if ($next.classList.contains('a-item__genders')) {
             if ($item.classList.contains('a-item--selected')) {
-                $next.classList.add('a-item__sizes--active');
-                $sizeResult.textContent = document.querySelector('[data-default-selected]').textContent;
+                $sizes[0].parentElement.classList.add('a-item__sizes--active');
+                $genders[0].parentElement.classList.add('a-item__genders--active');
+                $sizeResult.textContent = document.querySelector('[data-default-size]').textContent;
+                $genderResult.textContent = document.querySelector('[data-default-gender]').textContent;
             } else {
-                $next.classList.remove('a-item__sizes--active');
+                $sizes[0].parentElement.classList.remove('a-item__sizes--active');
+                $genders[0].parentElement.classList.remove('a-item__genders--active');
                 $sizeResult.textContent = '';
+                $genderResult.textContent = '';
                 document.querySelector('.a-item__sizes__size--selected').classList.remove('a-item__sizes__size--selected');
-                document.querySelector('[data-default-selected]').classList.add('a-item__sizes__size--selected');
+                document.querySelector('.a-item__genders__gender--selected').classList.remove('a-item__genders__gender--selected');
+                document.querySelector('[data-default-size]').classList.add('a-item__sizes__size--selected');
+                document.querySelector('[data-default-gender]').classList.add('a-item__genders__gender--selected');
             }
         }
     });
@@ -44,7 +57,36 @@ $items.forEach($item => {
 
 if ($submit) {
     $submit.addEventListener('click', e => {
+        e.preventDefault();
 
+        const data = {
+            ethernet: document.querySelector('[data-ethernet]').classList.contains('a-item--selected'),
+            menu: document.querySelector('[data-menu]').classList.contains('a-item--selected'),
+            visit: document.querySelector('[data-visit]').classList.contains('a-item--selected')
+        };
+
+        const shirt = document.querySelector('[data-shirt]');
+
+        if (shirt.classList.contains('a-item--selected')) {
+            data.shirt = {
+                gender: document.querySelector('.a-item__genders > .a-item__genders__gender--selected').textContent,
+                size  : document.querySelector('.a-item__sizes > .a-item__sizes__size--selected').textContent
+            };
+        }
+
+        const form  = document.createElement('form');
+        form.method = 'post';
+        form.action = `${location.origin}/etupay`;
+
+        Object.keys(data).forEach(name => {
+            const input = document.createElement('input');
+            input.type  = 'hidden';
+            input.name  = name;
+            input.value = data[name];
+            form.appendChild(input);
+        });
+
+        form.submit();
     });
 }
 
@@ -57,5 +99,17 @@ $sizes.forEach($size => {
         $sizeResult.textContent = $size.textContent;
 
         $size.classList.add('a-item__sizes__size--selected');
+    });
+});
+
+$genders.forEach($gender => {
+    $gender.addEventListener('click', e => {
+        const $previousGender = document.querySelector('.a-item__genders__gender--selected');
+
+        $previousGender.classList.remove('a-item__genders__gender--selected');
+
+        $genderResult.textContent = $gender.textContent;
+
+        $gender.classList.add('a-item__genders__gender--selected');
     });
 });

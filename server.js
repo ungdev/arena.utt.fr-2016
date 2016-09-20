@@ -38,6 +38,7 @@ app.set('views', process.cwd() + '/src/views');
 
 require('./server/user')(app);
 require('./server/teams')(app);
+require('./server/etupay')(app);
 
 app.get('/pass', (req, res) => {
     if (isAuth(req)) {
@@ -93,8 +94,9 @@ app.get('dashboard.html', (req, res) => res.status(404).end());
 
 // Redirect to dashboard if connected
 app.get(/\/(index.html)?$/, (req, res) => {
-    const isLoggedIn = isAuth(req);
-    res.render('index', { isLoggedIn });
+    const isLoggedIn   = isAuth(req);
+    const disableLogin = config.disableLogin;
+    res.render('index', { isLoggedIn, disableLogin });
 });
 
 app.use(serveStatic('public/'));

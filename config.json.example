@@ -2,6 +2,7 @@
     "secret": "randomString64bytes",
     "port": "8080",
     "isHTTPS": true,
+    "disableLogin": true,
     "db": {
         "host": "localhost",
         "name": "arena.utt.fr",
@@ -22,5 +23,10 @@
         "console": "debug",
         "file": "debug",
         "maxsize": 10000000
+    },
+    "etupay": {
+        "id": 3,
+        "url": "https://etupay.utt.fr/initiate",
+        "key": "foobar"
     }
 }

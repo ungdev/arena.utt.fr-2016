@@ -57,6 +57,15 @@
         z-index: 4;
     }
 
+    .a-modal__closed-login {
+        color: #fff;
+        font-size: 3.5rem;
+        line-height: 60px;
+        margin: 0 auto;
+        max-width: 250px;
+        text-align: center;
+    }
+
     .a-modal__input {
         text-align: center;
 
