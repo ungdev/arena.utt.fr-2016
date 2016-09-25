@@ -113,7 +113,7 @@
         }
 
         &.a-banner--infos {
-            background-image: url(/img/infos.png);
+            background-image: url(/img/infos.jpg);
 
             & + div, & + div + div {
                 margin-top: 300px;
@@ -121,7 +121,7 @@
         }
 
         &.a-banner--partners {
-            background-image: url(/img/partners.png);
+            background-image: url(/img/partners.jpg);
 
             & + div {
                 margin-top: 300px;
@@ -129,7 +129,7 @@
         }
 
         &.a-banner--festival {
-            background-image: url(/img/festival.png);
+            background-image: url(/img/festival.jpg);
 
             & + p {
                 margin-top: 300px;
