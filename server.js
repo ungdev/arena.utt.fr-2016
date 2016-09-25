@@ -99,7 +99,7 @@ app.get(/\/(index.html)?$/, (req, res) => {
     res.render('index', { isLoggedIn, disableLogin });
 });
 
-app.use(serveStatic('public/'));
+app.use(serveStatic('public/', { maxAge: '7 days' }));
 
 sequelize
     .sync({ force: config.db.reset })
