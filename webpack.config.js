@@ -9,6 +9,8 @@ const atImport = require('postcss-import');
 
 const colors = require('colors');
 
+const isProd = (process.env.NODE_ENV === 'production');
+
 module.exports = {
     entry: [
         './src/js/app.js'
@@ -18,17 +20,21 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js'
     },
-    devtool: 'eval-source-map',
+    devtool: isProd && 'eval-source-map',
     module: {
         loaders: [
             {
-                test: /\.css$/,
+                test  : /\.css$/,
                 loader: ExtractTextPlugin.extract('css?minimize&-url!postcss'),
             },
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel?cacheDirectory'
+                test   : /\.js$/,
+                include: /src/,
+                loader : 'babel',
+                query: {
+                    presets: ['es2015'],
+                    plugins: ['transform-runtime']
+                }
             }
         ]
     },
@@ -50,3 +56,19 @@ module.exports = {
         cssnext()
     ]
 };
+
+if (isProd) {
+    console.log('[Production build loaded]');
+
+    module.exports.devtool = null;
+
+    module.exports.plugins.push(new webpack.DefinePlugin({
+        'process.env': {
+            NODE_ENV: JSON.stringify('production')
+        }
+    }));
+
+    module.exports.plugins.push(new webpack.optimize.DedupePlugin());
+
+    module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: false }));
+}
