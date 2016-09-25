@@ -236,6 +236,14 @@
         background-color: var(--dark);
         opacity: 1;
     }
+
+    &.a-tabs__tab--small {
+        flex-grow: 0.8;
+    }
+
+    &.a-tabs__tab--x-small {
+        flex-grow: 0.6;
+    }
 }
 
 .a-list {
