@@ -11,15 +11,19 @@ const sequelize = new Sequelize(config.db.name, config.db.user, config.db.pwd, {
     }
 });
 
+const TRANSACTION_STATES = ['initialized', 'paid', 'authorization', 'refused', 'canceled', 'refunded'];
+
 const User = sequelize.define('user', {
-    name         : { type: Sequelize.STRING, unique: true },
-    email        : { type: Sequelize.STRING, validate: { isEmail: true }, unique: true },
-    password     : Sequelize.STRING,
-    paid         : { type: Sequelize.BOOLEAN, defaultValue: false },
-    shirt        : { type: Sequelize.ENUM('none', 'XS', 'S', 'M', 'L', 'XL'), defaultValue: 'none' },
-    plusone      : { type: Sequelize.BOOLEAN, defaultValue: false },
-    accepted     : { type: Sequelize.BOOLEAN, defaultValue: false },
-    registerToken: { type: Sequelize.UUID, unique: true, defaultValue: Sequelize.UUIDV4 }
+    name            : { type: Sequelize.STRING, unique: true },
+    email           : { type: Sequelize.STRING, validate: { isEmail: true }, unique: true },
+    password        : Sequelize.STRING,
+    paid            : { type: Sequelize.BOOLEAN, defaultValue: false },
+    shirt           : { type: Sequelize.ENUM('none', 'XS', 'S', 'M', 'L', 'XL'), defaultValue: 'none' },
+    plusone         : { type: Sequelize.BOOLEAN, defaultValue: false },
+    accepted        : { type: Sequelize.BOOLEAN, defaultValue: false },
+    transactionId   : { type: Sequelize.INTEGER, defaultValue: 0 },
+    transactionState: { type: Sequelize.ENUM(...TRANSACTION_STATES) },
+    registerToken   : { type: Sequelize.UUID, unique: true, defaultValue: Sequelize.UUIDV4 }
 }, {
     instanceMethods: {
         validatePassword (pwd) {

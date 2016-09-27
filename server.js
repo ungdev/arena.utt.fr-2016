@@ -28,6 +28,7 @@ app.use(compression());
 app.use(helmet());
 app.use(cookieParser(config.secret, { secure: config.isHTTPS, sameSite: 'strict' }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(session({ secret: config.secret, resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());

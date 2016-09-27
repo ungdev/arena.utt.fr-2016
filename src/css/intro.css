@@ -421,6 +421,10 @@
         }
     }
 
+    .a-page--intro .a-partners .a-partners__images {
+        justify-content: center;
+    }
+
     .a-page--intro .a-banner {
         font-size: 5rem;
     }

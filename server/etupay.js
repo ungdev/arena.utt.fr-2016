@@ -13,42 +13,50 @@ const base64_decode = enc => atob(enc);
 const base64_encode = bytes => btoa(bytes);
 
 const encrypt = payload => {
-    const iv = crypto.randomBytes(16);
+    const iv  = crypto.randomBytes(16);
     const key = new Buffer(config.etupay.key, 'base64');
-    console.log('IV is', iv.toString('base64'));
-    console.log('KEY is', key.toString('base64'));
-    console.log('VALUE is', serialize(JSON.stringify(payload)));
 
-    const cipher  = crypto.createCipheriv('aes-256-cbc', key, iv);
-    cipher.setAutoPadding(false);
-    let value = cipher.update(serialize(JSON.stringify(payload)), 'utf8', 'base64');
+    console.log('IV', iv.toString('base64'));
+    console.log('KEY', key.toString('base64'));
 
-    value + cipher.final('base64');
+    const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+    let value    = cipher.update(serialize(JSON.stringify(payload)), 'utf8');
 
-    console.log('encrypted is', value);
+    value = Buffer.concat([value, cipher.final()]).toString('base64');
 
-    console.log('createHmac', key, 'with', iv.toString('base64') + value);
-    const mac = crypto.createHmac('sha256', new Buffer(config.etupay.key, 'base64')).update(iv.toString('base64') + value).digest('hex');
+    console.log('VALUE', value.toString('base64'));
 
-    const json = JSON.stringify({ iv: iv.toString('base64'), value, mac });
+    const mac = crypto
+        .createHmac('sha256', new Buffer(config.etupay.key, 'base64'))
+        .update(iv.toString('base64') + value).digest('hex');
+
+    console.log('MAC', mac);
+
+    const json = JSON.stringify({
+        iv   : iv.toString('base64'),
+        value: value,
+        mac
+    });
 
     return base64_encode(json);
 };
 
 const decrypt = crypted => {
-    const { iv, value, mac } = JSON.parse(base64_decode(crypted));
+    let { iv, value, mac } = JSON.parse(base64_decode(crypted));
+
+    const key = new Buffer(config.etupay.key, 'base64');
+    iv        = new Buffer(iv, 'base64');
 
 
-    const decipher = crypto.createDecipheriv('aes-256-cbc', new Buffer(config.etupay.key, 'base64'), new Buffer(iv, 'base64'));
-    decipher.setAutoPadding(false);
-    let payload    = decipher.update(value);
+    const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
+    let payload    = decipher.update(value, 'utf8');
 
-    payload += decipher.final();
+    payload = Buffer.concat([payload, decipher.final()]);
 
     const checkMac = crypto.createHmac('sha256', config.etupay.key).update(iv + value).digest('hex');
 
     if (checkMac === mac /* crypto.areKeysEqual */) {
-        return JSON.parse(unserialize(payload));
+        return unserialize(payload);
     }
 };
 
@@ -69,16 +77,19 @@ module.exports = app => {
         if (isAuth(req)) {
             const EURO = 100;
 
+            console.log(req.body);
+
             const items = [
-                { name: 'Place pour l\'UTT Arena', price: 10 * EURO, quantity: 1 }
+                { name: 'Place UTT Arena', price: 10 * EURO, quantity: 1 }
             ];
 
             if (req.body.shirt) {
+                req.body.shirt = JSON.parse(req.body.shirt);
                 items.push({ name: `T-Shirt ${req.body.shirt.gender} ${req.body.shirt.size}`, price: 10 * EURO, quantity: 1 });
             }
 
             if (req.body.ethernet) {
-                items.push({ name: 'Câble réseau 5 mètres', price: 7 * EURO, quantity: 1 });
+                items.push({ name: 'Cable reseau 5m', price: 7 * EURO, quantity: 1 });
             }
 
             if (req.body.menu) {
@@ -101,8 +112,10 @@ module.exports = app => {
                 lastname    : lastname,
                 description : 'Inscription UTT Arena 2016',
                 articles    : items,
-                service_data: config.etupay.id
+                service_data: req.session.passport.user.id,
             };
+
+            console.log('basket is', basket);
 
             const serviceId = config.etupay.id;
             const url       = config.etupay.url;
@@ -115,5 +128,9 @@ module.exports = app => {
     });
 
     app.post('/callback', (req, res) => {
+        const payload = JSON.parse(decrypt(req.body.payload));
+
+        if (payload && payload.service_data) {
+        }
     });
 };

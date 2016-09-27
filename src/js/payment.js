@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const $items  = Array.from(document.querySelectorAll('.a-item[data-item-toggle]'));
 const $submit = document.querySelector('.a-payment-button');
 const $total  = $submit && $submit.querySelector('.a-payment-button__price');
@@ -59,19 +61,27 @@ if ($submit) {
     $submit.addEventListener('click', e => {
         e.preventDefault();
 
-        const data = {
-            ethernet: document.querySelector('[data-ethernet]').classList.contains('a-item--selected'),
-            menu: document.querySelector('[data-menu]').classList.contains('a-item--selected'),
-            visit: document.querySelector('[data-visit]').classList.contains('a-item--selected')
-        };
+        const data = {};
+
+        if (document.querySelector('[data-ethernet]').classList.contains('a-item--selected')) {
+            data.ethernet = true;
+        }
+
+        if (document.querySelector('[data-menu]').classList.contains('a-item--selected')) {
+            data.menu = true;
+        }
+
+        if (document.querySelector('[data-visit]').classList.contains('a-item--selected')) {
+            data.visit = true;
+        }
 
         const shirt = document.querySelector('[data-shirt]');
 
         if (shirt.classList.contains('a-item--selected')) {
-            data.shirt = {
+            data.shirt = JSON.stringify({
                 gender: document.querySelector('.a-item__genders > .a-item__genders__gender--selected').textContent,
                 size  : document.querySelector('.a-item__sizes > .a-item__sizes__size--selected').textContent
-            };
+            });
         }
 
         const form  = document.createElement('form');
