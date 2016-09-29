@@ -98,7 +98,7 @@
             <div class="a-modal a-modal--hidden" id="modal-login">
                 <a class="a-modal__closer">&#x2715;</a>
                 <% if (disableLogin) { %>
-                    <h3 class="a-font-bignoodle a-modal__closed-login">Inscription fermées pour le moment</h3>
+                    <h3 class="a-font-bignoodle a-modal__closed-login">Inscriptions fermées pour le moment</h3>
                 <% } else { %>
                     <div class="a-modal__login">
                         <h1 class="a-modal__title">Connexion</h1>
@@ -198,11 +198,14 @@
                         </p>
                     </div>
                     <div class="a-tabs">
-                        <div class="a-tabs__tab a-tabs__tab--small a-tabs__tab--active">
+                        <div class="a-tabs__tab  a-tabs__tab--active">
                             <a href="#">Matériel</a>
                         </div>
                         <div class="a-tabs__tab">
-                            <a href="#">Restauration</a>
+                            <a href="#">Repas</a>
+                        </div>
+                        <div class="a-tabs__tab">
+                            <a href="#">Repos</a>
                         </div>
                         <div class="a-tabs__tab a-tabs__tab--x-small">
                             <a href="#">Accès</a>
@@ -238,13 +241,17 @@
                             </ul>
                         </div>
                         <div class="a-panels__panel">
-                            <ul class="a-list a-list--two">
+                            <ul class="a-list a-list--one">
                                 <li>
-                                    <strong>Restauration</strong>
+                                    <strong>Repas</strong>
                                     <div>
                                         Vous pourrez vous restaurer sur place à prix faible et déguster boissons et mets délicats : sandwichs, pizzas, crêpes sucrées/salées, croque-monsieurs, sodas, boissons sans alcool, barres chocolatées.
                                     </div>
                                 </li>
+                            </ul>
+                        </div>
+                        <div class="a-panels__panel">
+                            <ul class="a-list a-list--one">
                                 <li>
                                     <strong>Repos</strong>
                                     <div>
@@ -275,6 +282,7 @@
                                     <div>Depuis Paris : Gare de l'Est vers Troyes (1h30 de trajet). Nous pouvons venir vous chercher à la gare, il faut nous prévenir à l'avance par mail puis nous appeler une demi-heure avant votre arrivée.</div>
                                 </li>
                             </ul>
+                            <iframe id="map" width="100%" height="300" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=Le%20Cube%20Troyes&key=AIzaSyDgY683rL6f4U0YWs0umhQ3xaE3D-q6SiY" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -294,7 +302,7 @@
                             <a href="#">Horaires</a>
                         </div>
                         <div class="a-tabs__tab">
-                            <a href="#">Tarif</a>
+                            <a href="#">Tarifs</a>
                         </div>
                         <div class="a-tabs__tab">
                             <a href="#">Contact</a>
@@ -306,20 +314,23 @@
                                 <li>
                                     <strong>Vendredi 9 Décembre</strong>
                                     <div>
-                                        18h : Ouverture de l'UTT Arena<br/>
-                                        21h : Début des animations et du spotlight LoL<br/>
+                                        18h : Ouverture de l'UTT Arena et des animations<br/>
+                                        Soirée : Début des tournois<br/>
                                     </div>
                                 </li>
                                 <li>
                                     <strong>Samedi 10 Décembre</strong>
                                     <div>
-                                        13h : Début des Spotlights<br/>
-                                        00h : Fin des Spotlights<br/>
+                                        10h : Reprise des tournois<br/>
+                                        00h : Fin de la 1<sup>ère</sup> journée de tournoi<br/>
                                     </div>
                                 </li>
                                 <li>
                                     <strong>Dimanche 11 Décembre</strong>
-                                    <div>18h : Fin de l'UTT Arena</div>
+                                    <div>
+                                        9h : Reprise des tournois<br/>
+                                        16h: Fin des tournois et remise des prix<br/>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -375,13 +386,29 @@
                             <img src="/img/utt.png" alt="UTT" height="100" width="282" />
                         </div>-->
                         <div class="a-partners__images__partner">
-                            <img src="/img/troyesExpoCube.png" alt="Troyes Expo Cube" height="100" width="100" />
+                            <a href="http://www.troyes-expo.com/">
+                                <img src="/img/troyesExpoCube.png" alt="Troyes Expo Cube" height="100" width="100" />
+                            </a>
                         </div>
                         <div class="a-partners__images__partner a-partners__images__partner--white">
-                            <img src="/img/c3.png" alt="Campus3" height="100" width="234" />
+                            <a href="https://campus3.fr/">
+                                <img src="/img/c3.png" alt="Campus3" height="100" width="234" />
+                            </a>
                         </div>
                         <div class="a-partners__images__partner">
-                            <img src="/img/bde.jpg" alt="BDE UTT" height="100" width="175" />
+                            <a href="https://www.facebook.com/bde.utt/">
+                                <img src="/img/bde.jpg" alt="BDE UTT" height="100" width="175" />
+                            </a>
+                        </div>
+                        <div class="a-partners__images__partner">
+                            <a href="https://www.meltdown.bar/troyes">
+                                <img src="/img/meltdown.png" alt="Meltdown Troyes" height="100" width="107" />
+                            </a>
+                        </div>
+                        <div class="a-partners__images__partner">
+                            <a href="http://noctua.at/fr/">
+                                <img src="/img/noctua.png" alt="Noctua" height="100" width="90" />
+                            </a>
                         </div>
                     </div>
                 </div>

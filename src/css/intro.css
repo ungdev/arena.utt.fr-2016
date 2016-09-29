@@ -266,16 +266,31 @@
 
     li {
         line-height: 25px;
+        padding-left: 1em;
+        text-indent: -.7em;
+
+        &:before {
+            content: '• ';
+            color: var(--accent);
+        }
     }
 
     strong {
         color: var(--accent);
+        text-align: left;
     }
 
     div {
         line-height: 18px;
         margin-bottom: 5px;
+        text-align: left;
+        text-indent: 0;
     }
+}
+
+#map {
+    margin: 0 15px;
+    width: calc(100% - 30px);
 }
 
 @media (max-width: 1260px) {
@@ -394,7 +409,7 @@
         font-size: 6rem;
     }
 
-    .a-page--intro .a-category .a-category__list {
+    .a-page--intro .a-category .a-category__list, .a-list {
         column-count: 2;
     }
 }

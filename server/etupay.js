@@ -2,6 +2,8 @@ const crypto = require('crypto');
 const btoa   = require('btoa');
 const atob   = require('atob');
 
+const { User } = require('./db');
+
 const { isAuth } = require('./passport');
 
 const config = require('../config.json');
@@ -131,6 +133,22 @@ module.exports = app => {
         const payload = JSON.parse(decrypt(req.body.payload));
 
         if (payload && payload.service_data) {
+            User
+                .findById(payload.service_data)
+                .then(user => {
+                    user.transactionId    = payload.transaction_id;
+                    user.transactionState = payload.step.toLowerCase();
+
+                    return user.save();
+                })
+                .then(() => {
+                    return res.status(200).end();
+                })
+                .catch(err => {
+                    return res.status(500).json(err).end();
+                });
+        } else {
+            return res.status(500).json({ err: 'Missing payload or service_data' }).end();
         }
     });
 };
