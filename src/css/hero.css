@@ -54,11 +54,6 @@
 }
 
 @media (max-width: 850px) {
-    .a-hero > .a-hero__content > img {
-        width: 400px;
-        height: 400px;
-    }
-
     .a-hero > .a-hero__content > .a-hero__content__logo {
         font-size: 9rem;
     }
