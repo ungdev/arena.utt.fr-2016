@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const url    = require('url');
 const btoa   = require('btoa');
 const atob   = require('atob');
 
@@ -9,8 +10,7 @@ const { isAuth } = require('./passport');
 const config = require('../config.json');
 
 const serialize   = str => `s:${str.length}:"${str}";`;
-const unserialize = str => str.split(':').pop();
-
+const unserialize = str => str.split(':').slice(2).join(':').slice(1, -2);
 const base64_decode = enc => atob(enc);
 const base64_encode = bytes => btoa(bytes);
 
@@ -46,35 +46,26 @@ const encrypt = payload => {
 const decrypt = crypted => {
     let { iv, value, mac } = JSON.parse(base64_decode(crypted));
 
+
     const key = new Buffer(config.etupay.key, 'base64');
     iv        = new Buffer(iv, 'base64');
-
+    value     = new Buffer(value, 'base64');
 
     const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
     let payload    = decipher.update(value, 'utf8');
 
     payload = Buffer.concat([payload, decipher.final()]);
 
-    const checkMac = crypto.createHmac('sha256', config.etupay.key).update(iv + value).digest('hex');
+    const checkMac = crypto
+        .createHmac('sha256', new Buffer(config.etupay.key, 'base64'))
+        .update(iv.toString('base64') + value.toString('base64')).digest('hex');
 
     if (checkMac === mac /* crypto.areKeysEqual */) {
-        return unserialize(payload);
+        return unserialize(payload.toString());
     }
 };
 
 module.exports = app => {
-    app.get('/success', (req, res) => {
-        res.render('etupay', {
-            success: true
-        });
-    });
-
-    app.get('/error', (req, res) => {
-        res.render('etupay', {
-            success: false
-        });
-    });
-
     app.post('/etupay', (req, res) => {
         if (isAuth(req)) {
             const EURO = 100;
@@ -129,20 +120,33 @@ module.exports = app => {
         }
     });
 
-    app.post('/callback', (req, res) => {
-        const payload = JSON.parse(decrypt(req.body.payload));
+    const callback = (req, res) => {
+        if (req.query.payload) {
+            req.session.payload = req.query.payload;
+            res.redirect(url.parse(req.originalUrl).pathname);
+        }
+
+        const payload = JSON.parse(decrypt(req.body.payload || req.session.payload));
+
+        if (!payload) {
+            return res.status(500).end();
+        }
 
         if (payload && payload.service_data) {
+            payload.step = payload.step.toLowerCase();
+
             User
                 .findById(payload.service_data)
                 .then(user => {
                     user.transactionId    = payload.transaction_id;
-                    user.transactionState = payload.step.toLowerCase();
+                    user.transactionState = payload.step;
 
                     return user.save();
                 })
                 .then(() => {
-                    return res.status(200).end();
+                    return res.render('etupay', {
+                        status: payload.step
+                    });
                 })
                 .catch(err => {
                     return res.status(500).json(err).end();
@@ -150,5 +154,9 @@ module.exports = app => {
         } else {
             return res.status(500).json({ err: 'Missing payload or service_data' }).end();
         }
-    });
+    };
+
+    app.use('/callback', callback);
+    app.use('/success', callback);
+    app.use('/error', callback);
 };

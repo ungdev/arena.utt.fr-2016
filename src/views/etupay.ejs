@@ -23,10 +23,14 @@
         <main id="a-anchor--team" class="a-anchor a-anchor--active">
             <div class="a-page a-page--intro a-page--blue">
                 <h2 id="a-anchor--team" class="a-page__title a-page__title--big">Paiement</h2>
-                <% if (success) { %>
+                <% if (status === 'paid' || status === 'authorization') { %>
                     <h3 class="a-page__title a-page__title--medium">Paiement accepté !</h3>
-                <% } else { %>
+                <% } else if (status === 'refused' || status === 'canceled') { %>
                     <h3 class="a-page__title a-page__title--medium">Paiement refusé.</h3>
+                <% } else if (status === 'refunded') { %>
+                    <h3 class="a-page__title a-page__title--medium">Paiement remboursé.</h3>
+                <% } else { %>
+                    <h3 class="a-page__title a-page__title--medium">Paiemnt <%= status %></h3>
                 <% } %>
                 <p>
                     <a href="/dashboard">Retour au site</a>
