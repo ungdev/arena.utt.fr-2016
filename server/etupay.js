@@ -144,14 +144,9 @@ module.exports = app => {
                     return user.save();
                 })
                 .then(() => {
-                    if (req.route.path === '/callback') {
-                        // callback needs to answer 302
-                        return res.redirect('/success');
-                    } else {
-                        return res.render('etupay', {
-                            status: payload.step
-                        });
-                    }
+                    return res.render('etupay', {
+                        status: payload.step
+                    });
                 })
                 .catch(err => {
                     return res.status(500).json(err).end();
