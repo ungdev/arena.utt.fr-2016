@@ -4,6 +4,7 @@ const btoa   = require('btoa');
 const atob   = require('atob');
 
 const { User } = require('./db');
+const pdf      = require('./pdf');
 
 const { isAuth } = require('./passport');
 
@@ -66,67 +67,97 @@ const decrypt = crypted => {
 };
 
 module.exports = app => {
-    app.post('/etupay', (req, res) => {
+    app.post('/etupay', (req, res, next) => {
         if (isAuth(req)) {
-            const EURO = 100;
+            User
+                .findById(req.session.passport.user.id)
+                .then(user => {
+                    user.email = req.body.email;
 
-            console.log(req.body);
-
-            const items = [
-                { name: 'Place UTT Arena', price: 10 * EURO, quantity: 1 }
-            ];
-
-            if (req.body.shirt) {
-                req.body.shirt = JSON.parse(req.body.shirt);
-                items.push({ name: `T-Shirt ${req.body.shirt.gender} ${req.body.shirt.size}`, price: 10 * EURO, quantity: 1 });
-            }
-
-            if (req.body.ethernet) {
-                items.push({ name: 'Cable reseau 5m', price: 7 * EURO, quantity: 1 });
-            }
-
-            if (req.body.menu) {
-                items.push({ name: 'Menu nourriture', price: 4.5 * EURO, quantity: 1 });
-            }
-
-            if (req.body.visit) {
-                items.push({ name: 'Place visiteur', price: 10 * EURO, quantity: 1 });
-            }
-
-            const name = req.session.passport.user.name.split(' ');
-            const firstname = name.shift();
-            const lastname  = name.join(' ');
-
-            const basket = {
-                type        : 'checkout',
-                amount      : items.map(item => item.price).reduce((a, b) => a + b, 0),
-                client_mail : req.session.passport.user.email,
-                firstname   : firstname,
-                lastname    : lastname,
-                description : 'Inscription UTT Arena 2016',
-                articles    : items,
-                service_data: req.session.passport.user.id,
-            };
-
-            console.log('basket is', basket);
-
-            const serviceId = config.etupay.id;
-            const url       = config.etupay.url;
-            const payload   = encrypt(basket);
-
-            return res.redirect(`${url}?service_id=${serviceId}&payload=${payload}`);
+                    return user.save();
+                })
+                .then(() => {
+                    next();
+                });
         } else {
             return res.redirect('/error');
         }
     });
 
+    app.post('/etupay', (req, res) => {
+        const EURO = 100;
+
+        console.log(req.body);
+
+        const mail = req.body.email;
+        const priceArena = (mail.toLowerCase().endsWith('@utt.fr') ||
+            mail.toLowerCase().endsWith('@utc.fr') ||
+            mail.toLowerCase().endsWith('@utbm.fr')) ? 10 : 15;
+
+        const items = [
+            { name: 'Place UTT Arena', price: priceArena * EURO, quantity: 1 }
+        ];
+
+        if (req.body.shirt) {
+            req.body.shirt = JSON.parse(req.body.shirt);
+            items.push({ name: `T-Shirt ${req.body.shirt.gender} ${req.body.shirt.size}`, price: 10 * EURO, quantity: 1 });
+        }
+
+        if (req.body.ethernet) {
+            items.push({ name: 'Cable reseau 5m', price: 7 * EURO, quantity: 1 });
+        }
+
+        if (req.body.menu) {
+            items.push({ name: 'Menu nourriture', price: 4.5 * EURO, quantity: 1 });
+        }
+
+        if (req.body.visit) {
+            items.push({ name: 'Place visiteur', price: 10 * EURO, quantity: 1 });
+        }
+
+        const name = req.session.passport.user.name.split(' ');
+        const firstname = name.shift();
+        const lastname  = name.join(' ');
+
+        const shirtGender = req.body.shirt ?
+            ':' +
+            (req.body.shirt.gender === 'Femme' ? 'f' : 'm') +
+            (req.body.shirt.size.toLowerCase()) : '';
+
+        const basket = {
+            type        : 'checkout',
+            amount      : items.map(item => item.price).reduce((a, b) => a + b, 0),
+            client_mail : req.session.passport.user.email,
+            firstname   : firstname,
+            lastname    : lastname,
+            description : 'Inscription UTT Arena 2016',
+            articles    : items,
+            service_data: req.session.passport.user.id + shirtGender
+        };
+
+        console.log('basket is', basket);
+
+        const serviceId = config.etupay.id;
+        const url       = config.etupay.url;
+        const payload   = encrypt(basket);
+
+        return res.redirect(`${url}?service_id=${serviceId}&payload=${payload}`);
+    });
+
     const callback = (req, res) => {
         if (req.query.payload) {
             req.session.payload = req.query.payload;
-            res.redirect(url.parse(req.originalUrl).pathname);
+            return res.redirect(url.parse(req.originalUrl).pathname);
         }
 
-        const payload = JSON.parse(decrypt(req.body.payload || req.session.payload));
+        let payload;
+        let pdfUser;
+
+        try {
+            payload = JSON.parse(decrypt(req.body.payload || req.session.payload));
+        } catch (e) {
+            return res.redirect('/dashboard');
+        }
 
         if (!payload) {
             return res.status(500).end();
@@ -135,20 +166,38 @@ module.exports = app => {
         if (payload && payload.service_data) {
             payload.step = payload.step.toLowerCase();
 
+            const service_data = payload.service_data.split(':');
+
             User
-                .findById(payload.service_data)
+                .findById(payload.service_data[0])
                 .then(user => {
+                    if (!user) {
+                        throw new Error('User not found');
+                    }
+
+                    pdfUser = user;
+
                     user.transactionId    = payload.transaction_id;
                     user.transactionState = payload.step;
 
+                    if (payload.step === 'paid' || payload.step === 'authorization') {
+                        user.paid = true;
+                    }
+
+                    if (payload.service_data[1]) {
+                        user.shirt  = service_data[1];
+                    }
+
                     return user.save();
                 })
+                .then(() => pdf(pdfUser))
                 .then(() => {
                     return res.render('etupay', {
                         status: payload.step
                     });
                 })
                 .catch(err => {
+                    console.log(err);
                     return res.status(500).json(err).end();
                 });
         } else {

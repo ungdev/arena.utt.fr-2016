@@ -7,7 +7,6 @@ const serveStatic     = require('serve-static');
 const session         = require('express-session');
 const compression     = require('compression');
 const helmet          = require('helmet');
-const transporter     = require('nodemailer').createTransport('SMTP', config.mail);
 const logger          = require('./server/log');
 const { isAuth }      = require('./server/passport');
 const isSpotlightFull = require('./server/full');
@@ -36,6 +35,9 @@ app.use(passport.session());
 app.set('view engine', 'ejs');
 app.set('views', process.cwd() + '/src/views');
 
+if (config.disableCache) {
+    app.disable('view cache');
+}
 
 require('./server/user')(app);
 require('./server/teams')(app);

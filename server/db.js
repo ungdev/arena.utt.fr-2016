@@ -13,12 +13,15 @@ const sequelize = new Sequelize(config.db.name, config.db.user, config.db.pwd, {
 
 const TRANSACTION_STATES = ['initialized', 'paid', 'authorization', 'refused', 'canceled', 'refunded'];
 
+const SHIRT_SIZES = ['none', 'fxs', 'fs', 'fm', 'fl', 'fxl', 'mxs', 'ms', 'mm', 'ml', 'mxl'];
+
 const User = sequelize.define('user', {
     name            : { type: Sequelize.STRING, unique: true },
     email           : { type: Sequelize.STRING, validate: { isEmail: true }, unique: true },
     password        : Sequelize.STRING,
+    barcode         : Sequelize.STRING,
     paid            : { type: Sequelize.BOOLEAN, defaultValue: false },
-    shirt           : { type: Sequelize.ENUM('none', 'XS', 'S', 'M', 'L', 'XL'), defaultValue: 'none' },
+    shirt           : { type: Sequelize.ENUM(...SHIRT_SIZES), defaultValue: 'none' },
     plusone         : { type: Sequelize.BOOLEAN, defaultValue: false },
     accepted        : { type: Sequelize.BOOLEAN, defaultValue: false },
     transactionId   : { type: Sequelize.INTEGER, defaultValue: 0 },

@@ -10,6 +10,8 @@ const $sizes      = Array.from(document.querySelectorAll('.a-item__sizes__size')
 const $genderResult = document.querySelector('.a-item__selected-gender');
 const $genders      = Array.from(document.querySelectorAll('.a-item__genders__gender'));
 
+const $email = document.getElementById('changeEmail');
+
 const isInt = n => (n % 1) === 0;
 
 $items.forEach($item => {
@@ -84,6 +86,8 @@ if ($submit) {
             });
         }
 
+        data.email = $email.value;
+
         const form  = document.createElement('form');
         form.method = 'post';
         form.action = `${location.origin}/etupay`;
@@ -123,3 +127,42 @@ $genders.forEach($gender => {
         $gender.classList.add('a-item__genders__gender--selected');
     });
 });
+
+
+if ($email) {
+    const endsWith = (str, end) => str.indexOf(end, str.length - end.length) !== -1;
+
+    const isPartner = () => {
+        return endsWith($email.value.toLowerCase(), '@utt.fr') ||
+            endsWith($email.value.toLowerCase(), '@utc.fr') ||
+            endsWith($email.value.toLowerCase(), '@utbm.fr');
+    }
+
+    let actualIsPartner = false;
+
+    const checkMail = () => {
+        const newIsPartner = isPartner();
+
+        if (newIsPartner === actualIsPartner) {
+            return;
+        }
+
+        actualIsPartner = newIsPartner;
+
+        if (newIsPartner) {
+            document.querySelector('.a-item__price').textContent = '10€';
+            const r = parseFloat($total.textContent) - 5;
+
+            $total.textContent = (isInt(r) ? r.toString() : r.toFixed(2)) + '€';
+        } else {
+            document.querySelector('.a-item__price').textContent = '15€';
+            const r = parseFloat($total.textContent) + 5;
+
+            $total.textContent = (isInt(r) ? r.toString() : r.toFixed(2)) + '€';
+        }
+    };
+
+    $email.addEventListener('keyup', checkMail);
+
+    checkMail();
+}

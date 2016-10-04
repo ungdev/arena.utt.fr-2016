@@ -13,7 +13,7 @@ const isSpotlightFull = spotlight => {
         .length;
 
     return teams === spotlight.max;
-}
+};
 
 module.exports = id => {
     return Spotlight

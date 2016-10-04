@@ -3,6 +3,7 @@
     "port": "8080",
     "isHTTPS": true,
     "disableLogin": true,
+    "disableCache": false,
     "db": {
         "host": "localhost",
         "name": "arena.utt.fr",
