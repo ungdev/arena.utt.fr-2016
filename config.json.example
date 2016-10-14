@@ -4,6 +4,8 @@
     "isHTTPS": true,
     "disableLogin": true,
     "disableCache": false,
+    "hasOffTournament": true,
+    "hasVisitor": true,
     "db": {
         "host": "localhost",
         "name": "arena.utt.fr",

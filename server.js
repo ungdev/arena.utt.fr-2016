@@ -81,7 +81,7 @@ app.get(
                         spotlight.isFull = areSpotlightFull[i];
                     });
 
-                    res.render('dashboard', { user, spotlights });
+                    res.render('dashboard', { user, spotlights, config });
                 })
                 .catch(err => {
                     res.status(500).end();

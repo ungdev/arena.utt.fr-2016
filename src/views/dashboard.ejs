@@ -171,13 +171,28 @@
                 <% if (!user.paid) { %>
                     <h3 class="a-page__title a-page__title--medium">Règle le paiement pour valider ta place pour l'UTT Arena. Tu recevras ta place par e-mail.</h3>
                     <br/>
+                    <p>
+                    Cette année les tournois sont à l'honneur !<br/>
+                    <ul>
+                        <li>La place standard permet de s'inscrire à un tournoi officiel : LoL, Overwatch ou Hearthstone</li>
+                        <li>La place hors tournoi permet d'accéder à la LAN et d'avoir une place pour pouvoir jouer sans s'inscrire dans les tournois. Ces places sont limitées au nombre de 20 et sont réservées en priorité aux accompagnateurs.</li>
+                        <li>La place visiteur permet d'accéder à l'ensemble du Festival des Jeux et de la LAN, et permet de rester à l'UTT Arena et ce même en dehors des horaires d'ouverture du Festival. Ces places sont limitées au nombre de 20 et sont réservées en priorité aux accompagnateurs.</li>
+                    </p>
+                    <br/>
                     <label for="changeEmail">Confirmation d'e-mail :</label>
                     <input type="email" name="changeEmail" id="changeEmail" value="<%= user.email %>"/>
                     <br/>
                     <br/>
                     <div class="a-items">
-                        <div class="a-item a-item--selected">Place standard <span class="a-item__price">15€</span></div>
-                        <div class="a-item" data-item-toggle="10" data-shirt>T-Shirt <span class="a-item__selected-size"></span> <span class="a-item__selected-gender"></span><span class="a-item__price">+10€</span></div>
+                        <div class="a-item a-item--selected" data-item-toggle="15" data-normal data-oneof>Place standard <span class="a-item__price">15€</span></div>
+                        <% if (config.hasOffTournament) { %>
+                            <div class="a-item" data-item-toggle="15" data-plusone data-oneof>Place hors tournoi<span class="a-item__price">15€</span></div>
+                        <% } %>
+                        <% if (config.hasVisitor) { %>
+                            <div class="a-item" data-item-toggle="6" data-visit data-oneof>Place visiteur (sans table)<span class="a-item__price">6€</span></div>
+                        <% } %>
+                        <br/>
+                        <div class="a-item" data-item-toggle="11" data-shirt>T-Shirt <span class="a-item__selected-size"></span> <span class="a-item__selected-gender"></span><span class="a-item__price">+11€</span></div>
                         <ul class="a-item__genders">
                             <li class="a-item__genders__gender">Femme</li>
                             <li class="a-item__genders__gender a-item__genders__gender--selected" data-default-gender>Homme</li>
@@ -190,8 +205,6 @@
                             <li class="a-item__sizes__size">XL</li>
                         </ul>
                         <div class="a-item" data-item-toggle="7" data-ethernet>Câble réseau 5m<span class="a-item__price">+7€</span></div>
-                        <div class="a-item" data-item-toggle="4" data-menu>Menu Pizza/Boisson/Crêpe <span class="a-item__price">+4€</span></div>
-                        <div class="a-item" data-item-toggle="10" data-visit>Place visiteur <span class="a-item__price">+10€</span></div>
                     </div>
                     <button class="a-payment-button">Payer <span class="a-payment-button__price">15€</span></button>
                     <p>

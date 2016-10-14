@@ -74,6 +74,19 @@ module.exports = app => {
                 .then(user => {
                     user.email = req.body.email;
 
+                    if (req.body.plusone) {
+                        user.plusone = true;
+                    } else if (req.body.plusplayer) {
+                        user.plusplayer = true;
+                    } else {
+                        user.plusone    = false;
+                        user.plusplayer = false;
+                    }
+
+                    if (req.body.ethernet) {
+                        user.ethernet = true;
+                    }
+
                     return user.save();
                 })
                 .then(() => {
@@ -100,19 +113,19 @@ module.exports = app => {
 
         if (req.body.shirt) {
             req.body.shirt = JSON.parse(req.body.shirt);
-            items.push({ name: `T-Shirt ${req.body.shirt.gender} ${req.body.shirt.size}`, price: 10 * EURO, quantity: 1 });
+            items.push({ name: `T-Shirt ${req.body.shirt.gender} ${req.body.shirt.size}`, price: 11 * EURO, quantity: 1 });
         }
 
         if (req.body.ethernet) {
             items.push({ name: 'Cable reseau 5m', price: 7 * EURO, quantity: 1 });
         }
 
-        if (req.body.menu) {
-            items.push({ name: 'Menu nourriture', price: 4.5 * EURO, quantity: 1 });
+        if (req.body.plusone) {
+            items.push({ name: 'Place visiteur additionnelle', price: 10 * EURO, quantity: 1 });
         }
 
-        if (req.body.visit) {
-            items.push({ name: 'Place visiteur', price: 10 * EURO, quantity: 1 });
+        if (req.body.plusplayer) {
+            items.push({ name: 'Place joueur additionnelle', price: priceArena * EURO, quantity: 1 });
         }
 
         const name = req.session.passport.user.name.split(' ');

@@ -3,6 +3,11 @@
         font-size: 1.1rem;
         margin-right: 10px;
     }
+
+    li {
+        font-size: 1.4rem;
+        text-align: left;
+    }
 }
 
 .a-items {

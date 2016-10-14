@@ -12,26 +12,32 @@ const $genders      = Array.from(document.querySelectorAll('.a-item__genders__ge
 
 const $email = document.getElementById('changeEmail');
 
+const $oneofs = Array.from(document.querySelectorAll('[data-oneof]'));
+
 const isInt = n => (n % 1) === 0;
+
+const makeSum = () => {
+    const s = $items
+        .filter($item => $item.classList.contains('a-item--selected'))
+        .map($item => {
+            return parseFloat($item.getAttribute('data-item-toggle'));
+        })
+        .reduce((a, b) => a + b, 0)
+
+    $total.textContent = s.toString() + '€';
+};
+
+$oneofs.forEach($oneof => {
+    $oneof.addEventListener('click', e => {
+        $oneofs.forEach($o => $o.classList.remove('a-item--selected'));
+    });
+});
 
 $items.forEach($item => {
     $item.addEventListener('click', e => {
         $item.classList.toggle('a-item--selected');
 
-        const actualValue = parseFloat($total.textContent);
-        const value       = parseFloat($item.getAttribute('data-item-toggle'));
-
-        let result;
-
-        if ($item.classList.contains('a-item--selected')) {
-            result = (actualValue + value);
-        } else {
-            result = (actualValue - value);
-        }
-
-        result = (isInt(result) ? result.toString() : result.toFixed(2));
-
-        $total.textContent = result + '€';
+        makeSum();
 
         // Activate sizes for t-shirt
         const $next = $item.nextElementSibling;
@@ -69,12 +75,12 @@ if ($submit) {
             data.ethernet = true;
         }
 
-        if (document.querySelector('[data-menu]').classList.contains('a-item--selected')) {
-            data.menu = true;
-        }
-
         if (document.querySelector('[data-visit]').classList.contains('a-item--selected')) {
             data.visit = true;
+        } else if (document.querySelector('[data-plusone]').classList.contains('a-item--selected')) {
+            data.plusone = true;
+        } else {
+            data.normal = true;
         }
 
         const shirt = document.querySelector('[data-shirt]');
@@ -128,7 +134,6 @@ $genders.forEach($gender => {
     });
 });
 
-
 if ($email) {
     const endsWith = (str, end) => str.indexOf(end, str.length - end.length) !== -1;
 
@@ -137,6 +142,9 @@ if ($email) {
             endsWith($email.value.toLowerCase(), '@utc.fr') ||
             endsWith($email.value.toLowerCase(), '@utbm.fr');
     }
+
+    const $first   = document.querySelector('.a-item__price');
+    const $plusone = document.querySelector('[data-plusone] > .a-item__price');
 
     let actualIsPartner = false;
 
@@ -149,16 +157,21 @@ if ($email) {
 
         actualIsPartner = newIsPartner;
 
+        let r;
         if (newIsPartner) {
-            document.querySelector('.a-item__price').textContent = '10€';
-            const r = parseFloat($total.textContent) - 5;
+            $first.textContent   = '10€';
+            $first.parentElement.setAttribute('data-item-toggle', '10');
+            $plusone.textContent = '10€';
+            $plusone.parentElement.setAttribute('data-item-toggle', '10');
 
-            $total.textContent = (isInt(r) ? r.toString() : r.toFixed(2)) + '€';
+            makeSum();
         } else {
-            document.querySelector('.a-item__price').textContent = '15€';
-            const r = parseFloat($total.textContent) + 5;
+            $first.textContent   = '15€';
+            $first.parentElement.setAttribute('data-item-toggle', '15');
+            $plusone.textContent = '15€';
+            $plusone.parentElement.setAttribute('data-item-toggle', '15');
 
-            $total.textContent = (isInt(r) ? r.toString() : r.toFixed(2)) + '€';
+            makeSum();
         }
     };
 
