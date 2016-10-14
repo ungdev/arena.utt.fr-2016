@@ -4,7 +4,7 @@
         margin-right: 10px;
     }
 
-    li {
+    > ul > li {
         font-size: 1.4rem;
         text-align: left;
     }
