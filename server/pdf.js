@@ -57,7 +57,8 @@ module.exports = function (user) {
                 .fontSize(20)
                 .text(`Nom: ${user.name}`, 20, 400)
                 .text(`T-Shirt: ${shirt[user.shirt]}`, 20, 420)
-                .text(`Accompagné: ${user.plusone ? 'Oui' : 'Non'}`, 20, 440);
+                .text(`Accompagnateur: ${user.plusplayer ? 'Oui' : 'Non'}`, 20, 440);
+                .text(`Visiteur: ${user.plusone ? 'Oui' : 'Non'}`, 20, 460);
 
             doc.image(barcode, 215, 500);
 
