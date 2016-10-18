@@ -106,6 +106,17 @@ if ($submit) {
             form.appendChild(input);
         });
 
+        const submit = document.createElement('input');
+        submit.type  = 'submit';
+        submit.value = 'submit';
+        form.appendChild(submit);
+
+        form.style.position = 'absolute';
+        form.style.left = '-999999px';
+        form.style.top = '-999999px';
+
+        document.body.appendChild(form);
+
         form.submit();
     });
 }
