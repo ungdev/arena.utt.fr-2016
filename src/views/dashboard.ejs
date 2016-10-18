@@ -72,7 +72,6 @@
                                 </div>
                                 <div class="a-dashboard__input">
                                     <select name="createTeamSpotlight" id="createTeamSpotlight">
-                                        <option value="" disabled selected>Spotlight</option>
                                         <% for (let spotlight of spotlights) { %>
                                             <% if (spotlight.isFull) { %>
                                                 <option value="<%= spotlight.id %>" disabled><%= spotlight.name %> (plein)</option>
@@ -95,7 +94,11 @@
                             <h2>Rejoignez une équipe</h2>
                             <form method="post" action="/joinTeam">
                                 <div class="a-dashboard__input">
-                                    <input type="text" name="joinTeamName" id="joinTeamName">
+                                    <select name="joinTeamName" id="joinTeamName">
+                                        <% for (let team of teams) { %>
+                                            <option value="<%= team.name %>"><%= team.name %></option>
+                                        <% } %>
+                                    </select>
                                 </div>
                                 <div class="a-dashboard__input">
                                     <input type="submit" class="a-font-bignoodle" value="Rejoindre">

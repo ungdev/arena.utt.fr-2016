@@ -81,7 +81,12 @@ app.get(
                         spotlight.isFull = areSpotlightFull[i];
                     });
 
-                    res.render('dashboard', { user, spotlights, config });
+                    return Team.findAll();
+                })
+                .then(teams_ => {
+                    const teams = teams_.map(team => team.toJSON());
+
+                    res.render('dashboard', { user, spotlights, config, teams });
                 })
                 .catch(err => {
                     res.status(500).end();
