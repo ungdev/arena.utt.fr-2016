@@ -198,7 +198,7 @@ module.exports = app => {
                     }
 
                     if (payload.service_data[1]) {
-                        user.shirt  = service_data[1];
+                        user.shirt = service_data[1];
                     }
 
                     return user.save();
