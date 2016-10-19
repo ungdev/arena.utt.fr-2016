@@ -182,7 +182,7 @@ module.exports = app => {
             const service_data = payload.service_data.split(':');
 
             User
-                .findById(payload.service_data[0])
+                .findById(service_data[0])
                 .then(user => {
                     if (!user) {
                         throw new Error('User not found');
@@ -197,7 +197,7 @@ module.exports = app => {
                         user.paid = true;
                     }
 
-                    if (payload.service_data[1]) {
+                    if (service_data[1]) {
                         user.shirt = service_data[1];
                     }
 
