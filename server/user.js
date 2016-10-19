@@ -37,7 +37,7 @@ module.exports = function (app) {
                     return res.status(400).json({ error: 'pwdlen' });
                 }
 
-                if (req.body.name.length < 6) {
+                if (req.body.name.length < 3) {
                     return res.status(400).json({ error: 'namelen' });
                 }
 

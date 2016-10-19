@@ -53,7 +53,7 @@ if ($registerForm) {
                 }
 
                 if (err.response.data.error === 'namelen') {
-                    return logger.log('Nom d\'utilisateur trop court (6 caractères minimum)');
+                    return logger.log('Nom d\'utilisateur trop court (2 caractères minimum)');
                 }
 
                 if (err.response.data.error === 'mail') {
