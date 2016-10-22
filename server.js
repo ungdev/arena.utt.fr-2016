@@ -115,7 +115,7 @@ sequelize
         return Spotlight
             .findOrCreate({ where: { name: 'League of Legends', max: 24, maxInTeam: 5, minInTeam: 5 } })
             .then(() => Spotlight.findOrCreate({ where: { name: 'Hearthstone', max: 16, maxInTeam: 1, minInTeam: 1 } }))
-            .then(() => Spotlight.findOrCreate({ where: { name: 'Overwatch', max: 24, maxInTeam: 5, minInTeam: 5 } }))
+            .then(() => Spotlight.findOrCreate({ where: { name: 'Overwatch', max: 24, maxInTeam: 6, minInTeam: 6 } }))
     })
     .then(() => {
         app.listen(8080, () => {
