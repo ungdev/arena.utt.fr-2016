@@ -85,8 +85,5 @@ module.exports = function (user) {
             attachments: [
                 { filename: 'uttarena.pdf', content: pdfBuffer }
             ]
-        }))
-        .catch(err => {
-            console.log('ERR', err);
-        });
+        }));
 };

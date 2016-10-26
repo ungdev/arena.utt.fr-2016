@@ -173,7 +173,7 @@ module.exports = app => {
         }
 
         if (!payload) {
-            return res.status(500).end();
+            return res.status(500).json({ err: 'missing payload'}).end();
         }
 
         if (payload && payload.service_data) {
@@ -210,7 +210,6 @@ module.exports = app => {
                     });
                 })
                 .catch(err => {
-                    console.log(err);
                     return res.status(500).json(err).end();
                 });
         } else {
