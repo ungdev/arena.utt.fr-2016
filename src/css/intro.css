@@ -15,6 +15,13 @@
         &.a-page__title--big {
             font-size: 10rem;
             margin-bottom: 0;
+
+            & + .a-page__title--big {
+                color: #727885;
+                margin-top: 0;
+                font-size: 7rem;
+                font-family: bignoodletitlingregular,sans-serif;
+            }
         }
 
         &.a-page__title--medium {
@@ -418,6 +425,10 @@
     .a-page--intro .a-page__title.a-page__title--big ,
     .a-page--intro .a-page__register {
         font-size: 4rem;
+
+        & + .a-page__title--big {
+            font-size: 4rem;
+        }
     }
 
     .a-page--intro .a-countdown-indicators .a-countdown-indicators__indicator {
