@@ -188,6 +188,10 @@ module.exports = app => {
                         throw new Error('User not found');
                     }
 
+                    if (user.paid) {
+                        return;
+                    }
+
                     pdfUser = user;
 
                     user.transactionId    = payload.transaction_id;
