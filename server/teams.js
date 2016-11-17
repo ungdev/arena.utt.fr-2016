@@ -13,7 +13,7 @@ module.exports = app => {
             return res.status(400).json({ error: 'alreadyInteam' }).end();
         }
 
-        if (req.body.name.length < 6) {
+        if (req.body.name.length < 5) {
             return res.status(400).json({ error: 'teamlen' }).end();
         }
 
