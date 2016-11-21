@@ -145,8 +145,8 @@ module.exports = app => {
             type        : 'checkout',
             amount      : items.map(item => item.price).reduce((a, b) => a + b, 0),
             client_mail : req.session.passport.user.email,
-            firstname   : firstname,
-            lastname    : lastname,
+            firstname   : firstname.replace(/[^\w\s]/gi, ''),
+            lastname    : lastname.replace(/[^\w\s]/gi, ''),
             description : 'Inscription UTT Arena 2016',
             articles    : items,
             service_data: req.session.passport.user.id + shirtGender
