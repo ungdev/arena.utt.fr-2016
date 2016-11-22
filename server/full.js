@@ -2,7 +2,13 @@ const logger                    = require('./log');
 const { Team, Spotlight, User } = require('./db');
 
 const isTeamFull = (spotlight, team) => {
-    const users = team.users.filter(user => user.accepted).length;
+    let users;
+
+    if (spotlight.maxInTeam === 1) {
+        users = team.users.filter(user => user.accepted && user.paid).length;
+    } else {
+        users = team.users.filter(user => user.accepted).length;
+    }
 
     return users <= spotlight.maxInTeam && users >= spotlight.minInTeam;
 };
