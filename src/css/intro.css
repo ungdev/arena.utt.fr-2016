@@ -144,6 +144,14 @@
         }
     }
 
+    .a-page__rules-link {
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 4rem;
+        border: 0;
+        text-shadow: none;
+    }
+
     .a-partners {
         .a-page__title.a-page__title--big {
             margin: 0 0 3rem 0;
@@ -462,6 +470,10 @@
     .a-list {
         column-count: 1 !important;
         margin: 0 15px;
+    }
+
+    .a-page--intro .a-page__rules-link {
+        font-size: 3rem;
     }
 }
 
