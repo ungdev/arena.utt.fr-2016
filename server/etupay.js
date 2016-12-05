@@ -119,7 +119,7 @@ module.exports = app => {
 
         if (req.body.plusone) {
             items = [
-                { name: 'Place hors tournoi UTT Arena', price: priceArena * EURO, quantity: 1 }
+                { name: 'Place libre UTT Arena', price: priceArena * EURO, quantity: 1 }
             ];
         }
 
