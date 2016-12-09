@@ -57,6 +57,7 @@ app.get(
         if (isAuth(req)) {
             let user;
             let spotlights;
+            let teams;
 
             User
                 .findById(req.session.passport.user.id, {
@@ -84,11 +85,20 @@ app.get(
                     return Team.findAll();
                 })
                 .then(teams_ => {
-                    const teams = teams_.map(team => team.toJSON());
+                    teams = teams_.map(team => team.toJSON());
 
-                    res.render('dashboard', { user, spotlights, config, teams });
+                    return User.findAndCountAll({
+                        where: { plusplayer: 1 }
+                    });
+                })
+                .then((plusplayer) => {
+                    const limitOffTournament = plusplayer.count < config.offTournamentLimit;
+                    const hasOffTournament   = config.hasOffTournament && limitOffTournament;
+
+                    res.render('dashboard', { user, spotlights, config, teams, hasOffTournament });
                 })
                 .catch(err => {
+                    console.log(err);
                     res.status(500).end();
                 });
         } else {

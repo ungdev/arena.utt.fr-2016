@@ -5,6 +5,7 @@
     "disableLogin": true,
     "disableCache": false,
     "hasOffTournament": true,
+    "offTournamentLimit": 20,
     "hasVisitor": true,
     "db": {
         "host": "localhost",
