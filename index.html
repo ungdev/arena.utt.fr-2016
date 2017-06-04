@@ -51,15 +51,9 @@
             <div class="a-font-bignoodle a-menu__item a-menu__item--link a-menu__item--no-border">
                 <a data-scroll href="#a-anchor--contacts">Contacts</a>
             </div>
-            <% if (isLoggedIn) { %>
-                <div class="a-font-bignoodle a-menu__item a-menu__item--right">
-                    <a href="/dashboard">Mon compte</a>
-                </div>
-            <% } else { %>
-                <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
-                    <a href="#">Connexion</a>
-                </div>
-            <% } %>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
+                <a href="#">Connexion</a>
+            </div>
         </nav>
 
         <nav class="a-menu" data-scroll-header>
@@ -82,15 +76,9 @@
             <div class="a-font-bignoodle a-menu__item a-menu__item--link a-menu__item--no-border">
                 <a data-scroll href="#a-anchor--contacts">Contacts</a>
             </div>
-            <% if (isLoggedIn) { %>
-                <div class="a-font-bignoodle a-menu__item a-menu__item--right">
-                    <a href="/dashboard">Mon compte</a>
-                </div>
-            <% } else { %>
-                <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
-                    <a href="#">Connexion</a>
-                </div>
-            <% } %>
+            <div class="a-font-bignoodle a-menu__item a-menu__item--right" data-modal="#modal-login">
+                <a href="#">Connexion</a>
+            </div>
             <div class="a-font-bignoodle a-menu__item a-menu__item--right a-menu__item--right-mobile">Menu &#9776;</div>
         </nav>
 
@@ -113,37 +101,7 @@
                     </form>
                 </div>
                 <div class="a-modal__register">
-                    <% if (disableLogin) { %>
-                        <h3 class="a-font-bignoodle a-modal__closed-login">Inscriptions fermées pour le moment</h3>
-                    <% } else { %>
-                        <h1 class="a-modal__title">Inscription</h1>
-                        <form method="post" action="/register" id="registerForm">
-                            <div class="a-modal__input">
-                                <input type="text" placeholder="Pseudo" id="registerNickname" />
-                            </div>
-                            <div class="a-modal__input">
-                                <input type="password" placeholder="Mot de passe" id="registerPassword1" />
-                            </div>
-                            <div class="a-modal__input">
-                                <input type="password" placeholder="Confirmation" id="registerPassword2" />
-                            </div>
-                            <div class="a-modal__input">
-                                <input type="email" placeholder="Mail" id="registerMail" />
-                            </div>
-                            <div class="a-modal__input">
-                                <input type="checkbox" name="registerRules" id="registerRules" />
-                                <label for="registerRules">J'accepte les règles du tournoi</label>
-                            </div>
-                            <div class="a-modal__input">
-                                <input type="checkbox" name="registerConditions" id="registerConditions" />
-                                <label for="registerConditions">J'accepte les conditions générales</label>
-                            </div>
-                            <div class="a-modal__submit">
-                                <input type="submit" class="a-font-bignoodle" value="Inscription" />
-                                <a href="#" class="a-modal__switch">Connexion</a>
-                            </div>
-                        </form>
-                    <% } %>
+                    <h3 class="a-font-bignoodle a-modal__closed-login">Inscriptions fermées pour le moment</h3>
                 </div>
             </div>
 
@@ -178,11 +136,7 @@
                 </div>
                 <h2 class="a-page__title a-page__title--big">9, 10 et 11 Décembre 2016</h2>
                 <h2 class="a-page__title a-page__title--big">Cash Prize : 1200€</h2>
-                <% if (isLoggedIn) { %>
-                    <a href="/dashboard" class="a-button a-page__register">Mon compte</a>
-                <% } else { %>
-                    <button class="a-page__register" data-modal="#modal-login">Connexion</button>
-                <% } %>
+                <a href="/dashboard" class="a-button a-page__register">Mon compte</a>
                 <hr class="a-page__separator" />
                 <div class="a-category cf" id="a-anchor--infos">
                     <div class="a-banner a-banner--infos a-font-bignoodle a-font-bignoodle--oblique">
